@@ -1,0 +1,6 @@
+include ':BindingBuilder'
+include ':Networking'
+include ':core'
+include ':landing'
+include ':app'
+rootProject.name = "Fixel"
