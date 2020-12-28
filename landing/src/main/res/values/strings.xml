@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">landing</string>
+    <string name="facebook_link">https://www.facebook.com/FixelFashion/</string>
+    <string name="instagram_link">https://www.instagram.com/fixelfashion/</string>
+    <string name="twitter_link">https://twitter.com/FixelFashion</string>
+    <string name="tiktok_link">https://www.tiktok.com/@fixelfashion?lang=en</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="log_in">Log In</string>
+    <string name="footer_help">How can we help you?</string>
+    <string name="header_delivery">free delivery* on all orders</string>
+    <string name="footer_share_the_love">Share the love</string>
+    <string name="_2020">© 2020</string>
+    <string name="fbux">FBUX</string>
+    <string name="get_rewarded_for_shopping">GET REWARDED FOR SHOPPING</string>
+    <string name="promo_dialog_info">Get FBUX back when you order and use it towards your next purchase.</string>
+</resources>
