@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation_main"
-    app:startDestination="@id/landingFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/landingFragment"
         android:name="com.ronasit.landing.ui.LandingFragment"
-        android:label="LandingFragment" >
-        <action
-            android:id="@+id/action_landingFragment_to_infoDialogFragment"
-            app:destination="@id/infoDialogFragment" />
-    </fragment>
+        android:label="LandingFragment" />
     <fragment
-        android:id="@+id/infoDialogFragment"
-        android:name="com.ronasit.landing.ui.InfoDialogFragment"
-        android:label="InfoDialogFragment" />
+        android:id="@+id/splashFragment"
+        android:name="com.ronasit.splash.ui.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_landingFragment"
+            app:destination="@id/landingFragment"
+            app:launchSingleTop="false"
+            app:popUpToInclusive="false" />
+    </fragment>
 </navigation>

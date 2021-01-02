@@ -11,7 +11,7 @@ import org.koin.android.ext.android.inject
 
 abstract class Fragment(
     private val layoutId: Int
-) : Fragment() {
+) : Fragment(), OnFragmentBackPressed {
 
     protected val disposable = CompositeDisposable()
     protected val coordinator by inject<Coordinator>()
@@ -31,5 +31,9 @@ abstract class Fragment(
     override fun onDestroy() {
         disposable.dispose()
         super.onDestroy()
+    }
+
+    override fun onBackPressed() {
+        activity?.finish()
     }
 }

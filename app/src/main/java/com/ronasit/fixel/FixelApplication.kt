@@ -3,6 +3,7 @@ package com.ronasit.fixel
 import android.app.Application
 import com.ronasit.fixel.di.getAppKoinModule
 import com.ronasit.landing.di.getLandingViewModel
+import com.ronasit.splash.di.getSplashKoinModule
 import org.koin.core.context.startKoin
 
 class FixelApplication: Application() {
@@ -17,7 +18,8 @@ class FixelApplication: Application() {
             this.modules(
                 listOf(
                     getAppKoinModule(),
-                    getLandingViewModel(BuildConfig.SERVER_URL)
+                    getLandingViewModel(BuildConfig.SERVER_URL),
+                    getSplashKoinModule()
                 )
             )
         }

@@ -7,12 +7,12 @@ import com.ronasit.fixel.R
 class AppCoordinator: Coordinator {
     private lateinit var navController: NavController
 
-    override fun toFbuxInfo() {
-        navController.navigate(R.id.action_landingFragment_to_infoDialogFragment)
-    }
-
     override fun navigateUp() {
         navController.navigateUp()
+    }
+
+    override fun toLandingScreen() {
+        navController.navigate(R.id.action_splashFragment_to_landingFragment)
     }
 
     fun setNavController(navController: NavController) {

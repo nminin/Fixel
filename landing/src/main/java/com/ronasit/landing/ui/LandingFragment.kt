@@ -91,9 +91,6 @@ class LandingFragment : Fragment(R.layout.fragment_landing) {
 
     private fun initHeader(view: View) {
         with(LayoutHeaderBinding.bind(view.findViewById(R.id.layout_header))) {
-            imageInfo.setOnClickListener {
-                coordinator.toFbuxInfo()
-            }
             this.root.bind(viewLifecycleOwner)
                 .observe(landingViewModel.getLandingModel()
                     .map {
@@ -168,5 +165,4 @@ class LandingFragment : Fragment(R.layout.fragment_landing) {
     private fun showInfoDialog() {
         (activity as CustomDialogHost).showDialog(InfoDialogFragment())
     }
-
 }

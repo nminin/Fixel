@@ -7,6 +7,7 @@ import com.ronasit.core.navigation.Coordinator
 import com.ronasit.core.ui.CustomDialogFragment
 import com.ronasit.core.ui.CustomDialogFragment.Companion.DIALOG_FRAGMENT
 import com.ronasit.core.ui.CustomDialogHost
+import com.ronasit.core.ui.OnFragmentBackPressed
 import com.ronasit.fixel.R
 import org.koin.android.ext.android.inject
 
@@ -26,7 +27,22 @@ class MainActivity : AppCompatActivity(), CustomDialogHost {
         supportFragmentManager.findFragmentByTag(DIALOG_FRAGMENT)?.let {
             (it as CustomDialogFragment).dismiss()
         } ?: kotlin.run {
-            super.onBackPressed()
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+                ?.childFragmentManager?.let { fManager ->
+                    if (fManager.fragments.size > 0) {
+                        fManager.fragments.get(0).let {
+                            if (it is OnFragmentBackPressed) {
+                                it.onBackPressed()
+                            } else {
+                                super.onBackPressed()
+                            }
+                        }
+                    } else {
+                        super.onBackPressed()
+                    }
+                } ?: kotlin.run {
+                super.onBackPressed()
+            }
         }
     }
 
