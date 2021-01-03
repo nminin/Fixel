@@ -1,7 +1,6 @@
 package com.ronasit.splash.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.ronasit.core.ui.Fragment
 import com.ronasit.splash.R
@@ -14,7 +13,6 @@ class SplashFragment: Fragment(R.layout.fragment_splash) {
     override fun initView(view: View, savedInstanceState: Bundle?) {
         splashViewModel.onDataPreloaded()
             .subscribe({
-                Log.d("asdasdasd", "asdasdasd")
                 coordinator.toLandingScreen()
             }, {
                 //ignore

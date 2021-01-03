@@ -51,7 +51,7 @@
         android:layout_marginBottom="56dp"
         android:gravity="center_horizontal"
         android:textAllCaps="true"
-        android:textSize="56sp"
+        android:textSize="44sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/text_promo"
         app:layout_constraintEnd_toEndOf="parent"

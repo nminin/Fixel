@@ -5,4 +5,6 @@ interface Coordinator {
     fun navigateUp()
 
     fun toLandingScreen()
+
+    fun toAuthorization()
 }

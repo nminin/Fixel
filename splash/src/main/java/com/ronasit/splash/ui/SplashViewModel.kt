@@ -1,6 +1,5 @@
 package com.ronasit.splash.ui
 
-import android.util.Log
 import com.jakewharton.rxrelay3.PublishRelay
 import com.ronasit.core.base.ViewModel
 import com.ronasit.core.extension.acceptTo
@@ -19,13 +18,6 @@ class SplashViewModel(
 
     fun preloadData() {
         landingRepository.refresh()
-            .doOnSuccess {
-                Log.d("asdasdasd", "doOnSuccess")
-            }
-            .doOnSuccess {
-                Log.d("asdasdasd", "doOnError")
-            }
-
             .acceptTo(onDataPreloaded, error)
             .dispose(disposeBag)
     }

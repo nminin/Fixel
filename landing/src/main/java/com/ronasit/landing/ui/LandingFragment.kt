@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.ScrollView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nminin.bindingbuilder.bind
@@ -12,16 +13,22 @@ import com.ronasit.core.base.binding.GlideImageDecorator
 import com.ronasit.core.extension.highlightsBind
 import com.ronasit.core.extension.toVisibility
 import com.ronasit.core.ui.CustomDialogHost
-import com.ronasit.core.ui.Fragment
+import com.ronasit.core.ui.appbar.AppBarFragment
+import com.ronasit.core.ui.appbar.AppBarStyle
 import com.ronasit.landing.R
 import com.ronasit.landing.databinding.LayoutContentBinding
 import com.ronasit.landing.databinding.LayoutFooterBinding
 import com.ronasit.landing.databinding.LayoutHeaderBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LandingFragment : Fragment(R.layout.fragment_landing) {
+class LandingFragment : AppBarFragment(R.layout.fragment_landing) {
     private val landingViewModel by viewModel<LandingViewModel>()
     private val styleViewModel by viewModel<StyleViewModel>()
+
+    override fun appBarConfiguration() {
+        appBarViewModel.setStyle(AppBarStyle.TRANSPARENT)
+    }
+
     override fun initView(
         view: View,
         savedInstanceState: Bundle?
@@ -29,6 +36,15 @@ class LandingFragment : Fragment(R.layout.fragment_landing) {
         initHeader(view)
         initContent(view)
         initFooter(view)
+
+        view.findViewById<ScrollView>(R.id.scroll_view)
+            .setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+                if(scrollY <= 10) {
+                    appBarViewModel.setStyle(AppBarStyle.TRANSPARENT)
+                } else {
+                    appBarViewModel.setStyle(AppBarStyle.WHITE)
+                }
+            }
     }
 
     private fun initFooter(view: View) {

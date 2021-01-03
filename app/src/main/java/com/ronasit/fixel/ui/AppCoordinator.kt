@@ -15,6 +15,10 @@ class AppCoordinator: Coordinator {
         navController.navigate(R.id.action_splashFragment_to_landingFragment)
     }
 
+    override fun toAuthorization() {
+
+    }
+
     fun setNavController(navController: NavController) {
         this.navController = navController
     }
