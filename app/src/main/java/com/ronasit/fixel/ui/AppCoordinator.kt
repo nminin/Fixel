@@ -12,11 +12,11 @@ class AppCoordinator: Coordinator {
     }
 
     override fun toLandingScreen() {
-        navController.navigate(R.id.action_splashFragment_to_landingFragment)
+        navController.navigate(R.id.landingFragment)
     }
 
     override fun toAuthorization() {
-
+        navController.navigate(R.id.authorizationFragment)
     }
 
     fun setNavController(navController: NavController) {

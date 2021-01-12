@@ -17,4 +17,8 @@
             app:launchSingleTop="false"
             app:popUpToInclusive="false" />
     </fragment>
+    <fragment
+        android:id="@+id/authorizationFragment"
+        android:name="com.ronasit.authorization.ui.AuthorizationFragment"
+        android:label="AuthorizationFragment" />
 </navigation>

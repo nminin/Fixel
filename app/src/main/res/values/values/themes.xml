@@ -17,10 +17,4 @@
     <style name="TextViewMontserratRegular" parent="Widget.AppCompat.TextView">
         <item name="fontFamily">@font/font_montserrat_regular</item>
     </style>
-
-    <style name="ButtonYelow" parent="Widget.AppCompat.Button">
-        <item name="fontFamily">@font/font_montserrat_bold</item>
-        <item name="android:textColor">@color/button_text</item>
-        <item name="android:background">@drawable/background_button_yellow</item>
-    </style>
 </resources>

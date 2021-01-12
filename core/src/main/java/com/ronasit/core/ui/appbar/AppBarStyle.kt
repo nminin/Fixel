@@ -7,5 +7,6 @@ enum class AppBarStyle(
     val tintColor: Int
 ) {
     TRANSPARENT(R.color.transparent, R.color.white),
+    AUTHORIZATION(R.color.transparent, R.color.black),
     WHITE(R.color.white, R.color.black)
 }
