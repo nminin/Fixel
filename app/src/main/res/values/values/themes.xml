@@ -7,10 +7,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="TextViewBebasNeue" parent="Widget.AppCompat.TextView">
-        <item name="fontFamily">@font/font_bebas_neue_bold</item>
-    </style>
-
     <style name="TextViewMontserratBold" parent="Widget.AppCompat.TextView">
         <item name="fontFamily">@font/font_montserrat_bold</item>
     </style>

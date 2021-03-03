@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation_main"
-    app:startDestination="@id/splashFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/browseHostFragment">
+
 
     <fragment
-        android:id="@+id/landingFragment"
-        android:name="com.ronasit.landing.ui.LandingFragment"
-        android:label="LandingFragment" />
+        android:id="@+id/browseHostFragment"
+        android:name="com.ronasit.fixel.ui.host.BrowseHostFragment"
+        android:label="BrowseHostFragment" />
     <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.ronasit.splash.ui.SplashFragment"
-        android:label="SplashFragment" >
-        <action
-            android:id="@+id/action_splashFragment_to_landingFragment"
-            app:destination="@id/landingFragment"
-            app:launchSingleTop="false"
-            app:popUpToInclusive="false" />
-    </fragment>
+        android:id="@+id/accountHostFragment"
+        android:name="com.ronasit.fixel.ui.host.AccountHostFragment"
+        android:label="AccountHostFragment" />
     <fragment
-        android:id="@+id/authorizationFragment"
-        android:name="com.ronasit.authorization.ui.AuthorizationFragment"
-        android:label="AuthorizationFragment" />
+        android:id="@+id/cartHostFragment"
+        android:name="com.ronasit.fixel.ui.host.CartHostFragment"
+        android:label="CartHostFragment" />
+    <fragment
+        android:id="@+id/menuHostFragment"
+        android:name="com.ronasit.fixel.ui.host.MenuHostFragment"
+        android:label="MenuHostFragment" />
+    <fragment
+        android:id="@+id/homeHostFragment"
+        android:name="com.ronasit.fixel.ui.host.HomeHostFragment"
+        android:label="HomeHostFragment" />
+
+
 </navigation>

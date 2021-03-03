@@ -6,4 +6,10 @@ interface PreferencesRepository {
 
     fun getToken(): String
 
+    fun getDefaultStyle(): String
+
+    fun setDefaultStyle(value: String)
+
+    fun getUUID(): String
+
 }

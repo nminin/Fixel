@@ -6,5 +6,14 @@ interface Coordinator {
 
     fun toLandingScreen()
 
-    fun toAuthorization()
+    fun toSignUp()
+
+    fun toLogIn()
+
+    fun toStyle()
+
+    fun toAccount()
+
+    fun toAccountInfo()
+
 }

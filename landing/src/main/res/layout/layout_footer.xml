@@ -37,7 +37,7 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="16dp"
-        android:background="@color/divider"
+        android:background="@color/divider_light"
         app:layout_constraintEnd_toEndOf="@+id/button_login"
         app:layout_constraintStart_toStartOf="@+id/button_sugnup"
         app:layout_constraintTop_toBottomOf="@+id/button_sugnup" />
@@ -71,7 +71,7 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="16dp"
-        android:background="@color/divider"
+        android:background="@color/divider_light"
         app:layout_constraintEnd_toEndOf="@+id/button_login"
         app:layout_constraintStart_toStartOf="@+id/button_sugnup"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />

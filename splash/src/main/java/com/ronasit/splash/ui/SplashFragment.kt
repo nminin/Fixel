@@ -11,7 +11,7 @@ class SplashFragment: Fragment(R.layout.fragment_splash) {
     private val splashViewModel by viewModel<SplashViewModel>()
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
-        splashViewModel.onDataPreloaded()
+        splashViewModel.isDataPreloaded()
             .subscribe({
                 coordinator.toLandingScreen()
             }, {

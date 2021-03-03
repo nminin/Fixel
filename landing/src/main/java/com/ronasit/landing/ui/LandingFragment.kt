@@ -4,80 +4,53 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.ScrollView
+import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nminin.bindingbuilder.bind
+import com.nminin.bindingbuilder.default.ButtonTextDecorator
+import com.nminin.bindingbuilder.default.TextDecorator
 import com.nminin.bindingbuilder.default.VisibilityDecorator
 import com.ronasit.core.base.binding.GlideImageDecorator
 import com.ronasit.core.extension.highlightsBind
+import com.ronasit.core.extension.safeMap
 import com.ronasit.core.extension.toVisibility
 import com.ronasit.core.ui.CustomDialogHost
-import com.ronasit.core.ui.appbar.AppBarFragment
-import com.ronasit.core.ui.appbar.AppBarStyle
+import com.ronasit.core.ui.Fragment
+import com.ronasit.core.ui.StyleViewModel
 import com.ronasit.landing.R
 import com.ronasit.landing.databinding.LayoutContentBinding
-import com.ronasit.landing.databinding.LayoutFooterBinding
 import com.ronasit.landing.databinding.LayoutHeaderBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LandingFragment : AppBarFragment(R.layout.fragment_landing) {
+class LandingFragment : Fragment(R.layout.fragment_landing) {
     private val landingViewModel by viewModel<LandingViewModel>()
     private val styleViewModel by viewModel<StyleViewModel>()
-
-    override fun appBarConfiguration() {
-        appBarViewModel.setStyle(AppBarStyle.TRANSPARENT)
-    }
-
     override fun initView(
         view: View,
         savedInstanceState: Bundle?
     ) {
         initHeader(view)
         initContent(view)
-        initFooter(view)
-
-        view.findViewById<ScrollView>(R.id.scroll_view)
-            .setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-                if(scrollY <= 10) {
-                    appBarViewModel.setStyle(AppBarStyle.TRANSPARENT)
-                } else {
-                    appBarViewModel.setStyle(AppBarStyle.WHITE)
-                }
-            }
-    }
-
-    private fun initFooter(view: View) {
-        with(LayoutFooterBinding.bind(view.findViewById(R.id.layout_footer))) {
-            this.imageFb.setOnClickListener {
-                openLink(getString(R.string.facebook_link))
-            }
-            this.imageInst.setOnClickListener {
-                openLink(getString(R.string.instagram_link))
-            }
-            this.imageTwitter.setOnClickListener {
-                openLink(getString(R.string.twitter_link))
-            }
-            this.imagePinterest.setOnClickListener {
-                openLink(getString(R.string.tiktok_link))
-            }
-        }
     }
 
     private fun initContent(view: View) {
         with(LayoutContentBinding.bind(view.findViewById(R.id.layout_content))) {
             this.root.bind(viewLifecycleOwner)
-                .observe(landingViewModel.getLandingModel()
-                    .map {
-                        (!it.categories.isNullOrEmpty()).toVisibility()
-                    }, VisibilityDecorator()
+                .observe(
+                    landingViewModel.getLandingModel()
+                        .map {
+                            (!it.categories.isNullOrEmpty()).toVisibility()
+                        }, VisibilityDecorator()
                 )
+
             this.textHeader.bind(viewLifecycleOwner)
                 .highlightsBind(
-                    landingViewModel.getLandingModel().map {
+                    landingViewModel.getLandingModel().safeMap {
                         it.categoriesHeader
                     },
-                    styleViewModel.getColor()
+                    styleViewModel.getStyle(),
+                    "#000000"
                 )
 
             this.recyclerCategories.bind(viewLifecycleOwner) {
@@ -108,10 +81,11 @@ class LandingFragment : AppBarFragment(R.layout.fragment_landing) {
     private fun initHeader(view: View) {
         with(LayoutHeaderBinding.bind(view.findViewById(R.id.layout_header))) {
             this.root.bind(viewLifecycleOwner)
-                .observe(landingViewModel.getLandingModel()
-                    .map {
-                        (it.textHeader != null).toVisibility()
-                    }, VisibilityDecorator()
+                .observe(
+                    landingViewModel.getLandingModel()
+                        .map {
+                            (it.textHeader != null).toVisibility()
+                        }, VisibilityDecorator()
                 )
             this.imageHeader.bind(viewLifecycleOwner)
                 .observe(
@@ -123,49 +97,46 @@ class LandingFragment : AppBarFragment(R.layout.fragment_landing) {
                 )
             this.textHeader.bind(viewLifecycleOwner)
                 .highlightsBind(
-                    landingViewModel.getLandingModel().map {
+                    landingViewModel.getLandingModel().safeMap {
                         it.textHeader
                     },
-                    styleViewModel.getColor()
+                    styleViewModel.getStyle()
                 )
             this.textMain.bind(viewLifecycleOwner)
                 .highlightsBind(
-                    landingViewModel.getLandingModel().map {
+                    landingViewModel.getLandingModel().safeMap {
                         it.textMain
                     },
-                    styleViewModel.getColor()
+                    styleViewModel.getStyle()
                 )
             this.textPromo.bind(viewLifecycleOwner)
                 .highlightsBind(
-                    landingViewModel.getLandingModel().map {
+                    landingViewModel.getLandingModel().safeMap {
                         it.textPromo
                     },
-                    styleViewModel.getColor()
+                    styleViewModel.getStyle()
                 )
             this.textBottom.bind(viewLifecycleOwner)
                 .highlightsBind(
-                    landingViewModel.getLandingModel().map {
+                    landingViewModel.getLandingModel().safeMap {
                         it.textBottom
                     },
-                    styleViewModel.getColor()
+                    styleViewModel.getStyle()
                 )
 
             this.imageInfo.setOnClickListener {
                 showInfoDialog()
             }
 
-            landingViewModel.getLandingModel()
-                .subscribe({
-                    this.buttonHeader.visibility = if (it.buttonVisibility) {
-                        View.VISIBLE
-                    } else {
-                        View.GONE
-                    }
-                    this.textButton.text = it.buttonText
-                }, {
-                    //ignore
-                })
-
+            (this.buttonHeader as Button)
+                .bind(this@LandingFragment)
+                .highlightsBind(styleViewModel.getStyle())
+                .observe(landingViewModel.getLandingModel().map {
+                    it.buttonText
+                }, ButtonTextDecorator())
+                .observe(landingViewModel.getLandingModel().map {
+                    it.buttonVisibility.toVisibility(View.GONE)
+                }, VisibilityDecorator())
         }
     }
 

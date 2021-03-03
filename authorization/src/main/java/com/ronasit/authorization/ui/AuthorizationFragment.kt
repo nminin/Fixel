@@ -1,22 +1,48 @@
 package com.ronasit.authorization.ui
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import com.google.android.material.tabs.TabLayout
+import com.nminin.bindingbuilder.bind
 import com.ronasit.authorization.R
+import com.ronasit.core.extension.dispose
+import com.ronasit.core.extension.highlightsEditTextBind
+import com.ronasit.core.ui.Fragment
 import com.ronasit.core.ui.OnFragmentBackPressed
-import com.ronasit.core.ui.appbar.AppBarFragment
-import com.ronasit.core.ui.appbar.AppBarStyle
+import com.ronasit.core.ui.StyleViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AuthorizationFragment : AppBarFragment(R.layout.fragment_authorization), OnFragmentBackPressed {
+class AuthorizationFragment : Fragment(R.layout.fragment_authorization), OnFragmentBackPressed {
+    private val styleViewModel by viewModel<StyleViewModel>()
+    private val authorizationViewModel by viewModel<AuthorizationViewModel>()
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
+        authorizationViewModel.getUser()
+            .subscribe {
+                it.value?.let {
+                    coordinator.toAccount()
+                } ?: run {
+                    view!!.findViewById<LinearLayout>(R.id.content)?.visibility = View.VISIBLE
+                }
+            }
+            .dispose(disposable)
         childFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, LoginFragment(), "login")
             .commit()
+
         with(view.findViewById<TabLayout>(R.id.tabs)) {
+
+            styleViewModel.getStyle().subscribe {
+                this.setSelectedTabIndicatorColor(resources.getColor(it.buttonBackgroundColor))
+                this.setTabTextColors(resources.getColor(R.color.white), resources.getColor(it.buttonTextColor))
+                view.findViewById<View>(R.id.view_underline).setBackgroundColor(resources.getColor(it.buttonBackgroundColor))
+            }
+                .dispose(disposable)
             this.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabReselected(tab: TabLayout.Tab?) {
                     //ignore
@@ -48,22 +74,11 @@ class AuthorizationFragment : AppBarFragment(R.layout.fragment_authorization), O
             this.selectTab(this.getTabAt(0))
         }
 
-        view.findViewById<ScrollView>(R.id.scroll_view)
-            .setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-                if (scrollY <= 10) {
-                    appBarViewModel.setStyle(AppBarStyle.AUTHORIZATION)
-                } else {
-                    appBarViewModel.setStyle(AppBarStyle.WHITE)
-                }
-            }
+
     }
 
     override fun onBackPressed() {
         coordinator.toLandingScreen()
-    }
-
-    override fun appBarConfiguration() {
-        appBarViewModel.setStyle(AppBarStyle.AUTHORIZATION)
     }
 
 }

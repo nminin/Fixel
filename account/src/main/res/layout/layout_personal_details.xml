@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_bebas_neue_bold"
+        android:gravity="center"
+        android:paddingTop="25dp"
+        android:paddingBottom="24dp"
+        android:text="@string/personal_details"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divider_dark" />
+
+    <EditText
+        android:id="@+id/text_first_name"
+        style="@style/TextViewMontserrat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:hint="@string/first_name"
+        android:paddingStart="16dp"
+        android:paddingTop="23dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="23dp"
+        android:textColorHint="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divider_dark" />
+
+    <EditText
+        android:id="@+id/text_last_name"
+        style="@style/TextViewMontserrat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:hint="@string/last_name"
+        android:paddingStart="16dp"
+        android:paddingTop="23dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="23dp"
+        android:textColorHint="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divider_dark" />
+
+    <EditText
+        android:id="@+id/text_email"
+        style="@style/TextViewMontserrat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:hint="@string/email_address"
+        android:paddingStart="16dp"
+        android:paddingTop="23dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="23dp"
+        android:textColorHint="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divider_dark" />
+
+    <EditText
+        android:id="@+id/text_phone"
+        style="@style/TextViewMontserrat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:hint="@string/phone_number"
+        android:paddingStart="16dp"
+        android:paddingTop="23dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="23dp"
+        android:textColorHint="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divider_dark" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/text_id"
+            style="@style/TextViewMontserrat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:hint="@string/id_number_optional"
+            android:paddingStart="16dp"
+            android:paddingTop="23dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="23dp"
+            android:textColorHint="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/button_info"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_info_acount" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -17,8 +17,4 @@
     <color name="yellow">#FAC91F</color>
     <color name="button_white">#FFFFFFFF</color>
 
-    <color name="divider">#4DFFFFFF</color>
-
-    <color name="dialog_fade">#B3000000</color>
-
 </resources>

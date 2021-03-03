@@ -1,37 +1,52 @@
 package com.ronasit.fixel.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
-import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.ronasit.core.extension.dispose
 import com.ronasit.core.navigation.Coordinator
 import com.ronasit.core.ui.CustomDialogFragment
 import com.ronasit.core.ui.CustomDialogFragment.Companion.DIALOG_FRAGMENT
 import com.ronasit.core.ui.CustomDialogHost
 import com.ronasit.core.ui.OnFragmentBackPressed
-import com.ronasit.core.ui.appbar.AppBarFragment
-import com.ronasit.core.ui.appbar.AppBarMenuItem
-import com.ronasit.core.ui.appbar.AppBarOwner
-import com.ronasit.core.ui.appbar.AppBarStyle
+import com.ronasit.core.ui.StyleViewModel
 import com.ronasit.fixel.R
-import com.ronasit.fixel.ui.appbar.AppBarDecorator
+import com.ronasit.splash.ui.SplashViewModel
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity(), CustomDialogHost, AppBarOwner {
+class MainActivity : AppCompatActivity(), CustomDialogHost {
 
     private val coordinator by inject<Coordinator>()
-    private lateinit var appBarDecorator: AppBarDecorator
+    private val splashViewModel by viewModel<SplashViewModel>()
+    private val styleViewModel by viewModel<StyleViewModel>()
+    private val disposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        (coordinator as AppCoordinator).setNavController(
-            findNavController(R.id.nav_host_fragment)
-        )
-        initAppBar()
+        splashViewModel.isDataPreloaded()
+            .subscribe {
+                findViewById<ConstraintLayout>(R.id.layout_splash).visibility = View.GONE
+            }
+            .dispose(disposable)
+        (coordinator as AppCoordinator).apply {
+            this.setNavController(
+                findNavController(R.id.nav_host_fragment)
+            )
+            this.setFragmentManager(
+                supportFragmentManager
+            )
+        }
+        initMenu()
     }
 
     override fun onBackPressed() {
@@ -61,37 +76,30 @@ class MainActivity : AppCompatActivity(), CustomDialogHost, AppBarOwner {
         supportFragmentManager.beginTransaction()
             .add(R.id.container_dialog, fraggment, DIALOG_FRAGMENT)
             .commitAllowingStateLoss()
-
     }
 
-    override fun applyAppBarStyle(style: AppBarStyle) {
-        appBarDecorator.applyStyle(style)
-    }
+    private fun initMenu() {
+        with(findViewById<BottomNavigationView>(R.id.bottom_navigation)) {
+            (coordinator as AppCoordinator).setNavView(this)
+            (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).let {
+                NavigationUI.setupWithNavController(this, it.navController)
+            }
 
-    override fun applyNavigationItem(items: AppBarMenuItem.Navigation) {
+            styleViewModel.getStyle()
+                .subscribe {
+                    this.itemIconTintList = ContextCompat.getColorStateList(
+                        context,
+                        it.iconTint
+                    )
+                }
 
-    }
-
-    private fun initAppBar() {
-        appBarDecorator = AppBarDecorator(findViewById(R.id.layout_appbar), coordinator)
-        supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-            ?.childFragmentManager?.let { hostFragmentManager ->
-                hostFragmentManager.addOnBackStackChangedListener {
-                    findViewById<FrameLayout>(R.id.layout_appbar).let { appBarLayout ->
-                        if (hostFragmentManager.backStackEntryCount > 0) {
-
-                            hostFragmentManager.fragments.get(0).let {
-                                if (it is AppBarFragment) {
-                                    appBarLayout.visibility = View.VISIBLE
-                                } else {
-                                    appBarLayout.visibility = View.GONE
-                                }
-                            }
-                        } else {
-                            appBarLayout.visibility = View.GONE
-                        }
-                    }
+            KeyboardVisibilityEvent.registerEventListener(this@MainActivity) {
+                if (it) {
+                    this.visibility = View.GONE
+                } else {
+                    this.visibility = View.VISIBLE
                 }
             }
+        }
     }
 }

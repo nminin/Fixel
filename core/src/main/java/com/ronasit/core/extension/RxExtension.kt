@@ -14,10 +14,7 @@ fun <T> Observable<T>.progress(liveData: BehaviorRelay<Boolean>) = this
     .doOnSubscribe {
         liveData.accept(true)
     }
-    .doOnComplete {
-        liveData.accept(false)
-    }
-    .doOnError {
+    .doFinally {
         liveData.accept(false)
     }
 
@@ -25,12 +22,11 @@ fun <T> Single<T>.progress(liveData: BehaviorRelay<Boolean>) = this
     .doOnSubscribe {
         liveData.accept(true)
     }
-    .doOnSuccess {
+    .doFinally {
         liveData.accept(false)
     }
-    .doOnError {
-        liveData.accept(false)
-    }
+
+fun <T> Relay<T>.asObservable() = this as Observable<T>
 
 fun <T> Single<T>.acceptTo(success: Relay<T>? = null, error: Relay<Throwable>? = null) = this
     .subscribe({
@@ -39,6 +35,18 @@ fun <T> Single<T>.acceptTo(success: Relay<T>? = null, error: Relay<Throwable>? =
         error?.accept(it)
     })
 
+fun <T> Single<T>.toRelay(relay: Relay<T>? = null) = this
+    .doOnSuccess {
+        relay?.accept(it)
+    }
+
+fun <T> Observable<T>.unit() = this.map {
+    Unit
+}
+
+fun <T> Single<T>.unit() = this.map {
+    Unit
+}
 
 fun <T> Observable<T>.acceptTo(success: Relay<T>? = null, error: Relay<Throwable>? = null) = this
     .subscribe({
@@ -89,11 +97,12 @@ fun <T> Observable<T>.emptySubscribe() = this
         it.printStackTrace()
     })
 
-fun <T> Observable<T>.safeMap(action: (T) -> Boolean) = this
-    .subscribe({
-        //ignore
-    }, {
-        it.printStackTrace()
-    })
+fun <T,R> Observable<T>.safeMap(action: (T) -> R?) = this
+    .filter {
+        action.invoke(it) != null
+    }
+    .map {
+        action.invoke(it)!!
+    }
 
 

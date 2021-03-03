@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="logout">Logout</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="log_in">Log In</string>
+    <string name="highlight_text_account">%@ ACCOUNT</string>
+    <string name="highlight_text_personalise">personalise %@ shopping</string>
+    <string name="highlight_text_style">%@ style</string>
+    <string name="highlight_text_order">TRACK %@ ORDER</string>
+    <string name="highlight_text_invite">INVITE %@ FRIENDS &amp; GET FBUX</string>
+    <string name="highlight_text_help">%@ HELP CENTRE</string>
+    <string name="highlight_my">my</string>
+    <string name="highlight_fixel">FIXEL</string>
+</resources>

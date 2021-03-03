@@ -1,3 +1,6 @@
+include ':account'
+include ':style'
+include ':menu'
 include ':authorization'
 include ':splash'
 include ':BindingBuilder'

@@ -7,9 +7,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="TextViewBebasNeue" parent="Widget.AppCompat.TextView">
-        <item name="fontFamily">@font/font_bebas_neue_bold</item>
-    </style>
 
     <style name="TextViewMontserratBold" parent="Widget.AppCompat.TextView">
         <item name="fontFamily">@font/font_montserrat_bold</item>
@@ -17,10 +14,30 @@
     <style name="TextViewMontserratRegular" parent="Widget.AppCompat.TextView">
         <item name="fontFamily">@font/font_montserrat_regular</item>
     </style>
+    <style name="TextViewMontserrat" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/font_montserrat</item>
+    </style>
+
+    <style name="Divider" >
+        <item name="background">@color/divider_light</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">match_parent</item>
+
+    </style>
+
+    <style name="TextViewBebasNeue" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/font_bebas_neue_bold</item>
+    </style>
 
     <style name="ButtonYelow" parent="Widget.AppCompat.Button">
         <item name="fontFamily">@font/font_montserrat_bold</item>
-        <item name="android:textColor">@color/button_text</item>
+        <item name="android:textColor">@color/button_text_black</item>
         <item name="android:background">@drawable/background_button_yellow</item>
     </style>
+    <style name="ButtonTint" parent="Widget.AppCompat.Button">
+        <item name="fontFamily">@font/font_montserrat_bold</item>
+        <item name="android:textColor">@color/button_text_black</item>
+        <item name="android:background">@drawable/background_button_yellow</item>
+    </style>
+
 </resources>

@@ -4,7 +4,6 @@ import com.google.gson.GsonBuilder
 import com.ronasit.core.repository.LandingRepository
 import com.ronasit.landing.data.networking.LandingApi
 import com.ronasit.landing.ui.LandingViewModel
-import com.ronasit.landing.ui.StyleViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -58,6 +57,5 @@ fun getLandingViewModel(apiUrl: String) = module {
     }
 
     viewModel { LandingViewModel(get()) }
-    viewModel { StyleViewModel() }
 }
 

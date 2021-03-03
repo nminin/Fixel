@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account">Account</string>
+    <string name="highlight_my">my</string>
+    <string name="highlight_text_account">%@ ACCOUNT INFO</string>
+    <string name="highlight_text_cards">%@ CARDS</string>
+    <string name="highlight_text_fbux">%@ FBUX</string>
+    <string name="highlight_text_orders">%@ ORDERS</string>
+    <string name="highlight_text_returns">%@ returns</string>
+    <string name="hello_username">HELLO %@</string>
+    <string name="first_name">FIRST NAME*</string>
+    <string name="last_name">LAST NAME*</string>
+    <string name="email_address">EMAIL ADDRESS*</string>
+    <string name="phone_number">PHONE NUMBER*</string>
+    <string name="id_number_optional">ID NUMBER (OPTIONAL)</string>
+    <string name="personal_details">personal details</string>
+    <string name="change_password">Change password</string>
+    <string name="gender_please_select_one">gender - please select one</string>
+    <string name="male">MALE</string>
+    <string name="female">FEMALE</string>
+    <string name="non_binary">non-binary</string>
+    <string name="address">Address</string>
+    <string name="add">Add</string>
+    <string name="billing_address">BILLING ADDRESS</string>
+    <string name="you_have_not_billing_address">YOU HAVE NOT A SET BILLING ADDRESS YET</string>
+    <string name="shipping_address">shipping address</string>
+    <string name="you_have_not_shipping_address">YOU HAVE NOT A SET shipping ADDRESS YET</string>
+    <string name="my_card">My cards</string>
+    <string name="no_cards">No cards</string>
+    <string name="id_number">ID NUMBER</string>
+    <string name="hint_id_info">This information will help us to personalise your experience, but it is optional.</string>
+    <string name="save">save</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="save_style">Save style</string>
+    <string name="change_the_color_hint">Change the colour of <b>Fixel</b> to\nfit your style.</string>
+    <string name="highlight_text_style">%@ STYLE</string>
+    <string name="highlight_my">MY</string>
+</resources>
