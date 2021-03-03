@@ -100,7 +100,6 @@ fun BindingBuilder<Button>.highlightsBind(
                 it.buttonTextColor
             )
         }
-
         this.view.setTextColor(
             ContextCompat.getColorStateList(
                 this.view.context,

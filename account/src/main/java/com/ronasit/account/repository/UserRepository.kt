@@ -26,7 +26,12 @@ internal class UserRepository(
 
     override fun get(): Observable<Optional<User>> = data
 
-    override fun set(item: User): Single<Unit> = Single.just(Unit)
+    override fun set(item: User?): Single<Unit> = Single.just(Unit)
+        .doOnSuccess {
+            data.accept(Optional(null))
+        }
+
+    override fun update(item: User): Single<Unit> = Single.just(Unit)
         .flatMap {
             refresh()
         }

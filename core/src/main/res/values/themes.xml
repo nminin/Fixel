@@ -36,6 +36,7 @@
     </style>
     <style name="ButtonTint" parent="Widget.AppCompat.Button">
         <item name="fontFamily">@font/font_montserrat_bold</item>
+        <item name="android:enabled">true</item>
         <item name="android:textColor">@color/button_text_black</item>
         <item name="android:background">@drawable/background_button_yellow</item>
     </style>

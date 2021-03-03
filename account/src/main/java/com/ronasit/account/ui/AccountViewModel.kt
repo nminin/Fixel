@@ -45,7 +45,7 @@ class AccountViewModel(
     }
 
     fun saveChanges() {
-        userRepository.set(
+        userRepository.update(
             userInfo.value
         )
             .progress(progress)

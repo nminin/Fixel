@@ -42,6 +42,7 @@ class StyleFragment() : Fragment(R.layout.fragment_style), OnFragmentBackPressed
             )
             .onClick {
                 viewModel.saveChanges()
+                onBackPressed()
             }
         view.findViewById<RecyclerView>(R.id.recycler_styles)
             .bindSelectable(this) {

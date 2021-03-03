@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity(), CustomDialogHost {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        splashViewModel.preloadData()
         splashViewModel.isDataPreloaded()
             .subscribe {
                 findViewById<ConstraintLayout>(R.id.layout_splash).visibility = View.GONE

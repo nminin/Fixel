@@ -6,5 +6,5 @@ import org.koin.dsl.module
 
 fun getMenuKoinModule() = module {
 
-    viewModel { MenuViewModel(get(), get()) }
+    viewModel { MenuViewModel(get(), get(), get()) }
 }

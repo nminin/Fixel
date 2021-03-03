@@ -2,10 +2,10 @@ package com.ronasit.authorization.di
 
 import com.google.gson.GsonBuilder
 import com.ronasit.authorization.data.interactor.LoginInteractor
+import com.ronasit.authorization.data.interactor.LogoutInteractor
 import com.ronasit.authorization.data.interactor.SignupInteractor
 import com.ronasit.authorization.data.networking.AuthorizationApi
 import com.ronasit.authorization.ui.AuthorizationViewModel
-import com.ronasit.core.repository.UserRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -59,6 +59,10 @@ fun getAuthorizationModule(apiUrl: String) = module {
     factory {
         SignupInteractor(get(), get(), get())
     }
+    factory<com.ronasit.core.interactor.LogoutInteractor> {
+        LogoutInteractor(get(), get())
+    }
+
 
     viewModel { AuthorizationViewModel(get(), get(), get()) }
 }

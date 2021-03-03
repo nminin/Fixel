@@ -8,7 +8,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nminin.bindingbuilder.bind
+import com.nminin.bindingbuilder.default.VisibilityDecorator
+import com.ronasit.core.extension.bindView
 import com.ronasit.core.extension.highlightsBind
+import com.ronasit.core.extension.toVisibility
 import com.ronasit.core.model.HighlightText
 import com.ronasit.core.ui.Fragment
 import com.ronasit.core.ui.StyleViewModel
@@ -120,6 +123,27 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
             .onClick {
                 notImplementedYet()
             }
+
+        bindView<Button>(R.id.button_logout)
+            .observe(
+                viewModel.getUser()
+                    .map {
+                        (it.value != null).toVisibility()
+                    },
+                VisibilityDecorator()
+            )
+            .onClick {
+                viewModel.logout()
+            }
+        bindView<View>(R.id.layout_authorization)
+            .observe(
+                viewModel.getUser()
+                    .map {
+                        (it.value == null).toVisibility()
+                    },
+                VisibilityDecorator()
+            )
+
 
         view.findViewById<Button>(R.id.button_log_in)
             .bind(this)
