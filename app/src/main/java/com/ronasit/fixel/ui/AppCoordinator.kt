@@ -44,6 +44,10 @@ class AppCoordinator: Coordinator {
         getCurrentNavController()?.navigate(R.id.toAccountInfoFragment)
     }
 
+    override fun toChangePassword() {
+        getCurrentNavController()?.navigate(R.id.toChangePasswordFragment)
+    }
+
     fun setNavController(navController: NavController) {
         this.navController = navController
     }

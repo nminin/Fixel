@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import com.ronasit.account.R
-import com.ronasit.account.ui.AccountViewModel
+import com.ronasit.account.ui.viewmodel.AccountViewModel
 import com.ronasit.core.extension.bindView
 import com.ronasit.core.extension.highlightsBind
 import com.ronasit.core.extension.safeMap

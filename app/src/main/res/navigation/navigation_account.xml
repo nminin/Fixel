@@ -22,5 +22,13 @@
     <fragment
         android:id="@+id/accountInfoFragment"
         android:name="com.ronasit.account.ui.fragment.AccountInfoFragment"
-        android:label="AccountInfoFragment" />
+        android:label="AccountInfoFragment" >
+        <action
+            android:id="@+id/toChangePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.ronasit.account.ui.fragment.ChangePasswordFragment"
+        android:label="ChangePasswordFragment" />
 </navigation>

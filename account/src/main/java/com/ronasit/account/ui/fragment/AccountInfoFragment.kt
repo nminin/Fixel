@@ -6,7 +6,7 @@ import android.widget.*
 import com.nminin.bindingbuilder.default.TextDecorator
 import com.nminin.bindingbuilder.onTextChanged
 import com.ronasit.account.R
-import com.ronasit.account.ui.AccountViewModel
+import com.ronasit.account.ui.viewmodel.AccountViewModel
 import com.ronasit.core.base.binding.EnabledDecorator
 import com.ronasit.core.extension.*
 import com.ronasit.core.model.HighlightText
@@ -86,6 +86,11 @@ class AccountInfoFragment: Fragment(R.layout.fragment_account_info) {
             .observe(accountViewModel.isSaveAvailable(), EnabledDecorator())
             .onClick {
                 accountViewModel.saveChanges()
+            }
+
+        bindView<TextView>(R.id.button_change_password)
+            .onClick {
+                coordinator.toChangePassword()
             }
 
         bindView<Switch>(R.id.switch_male)

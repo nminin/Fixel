@@ -16,4 +16,6 @@ interface Coordinator {
 
     fun toAccountInfo()
 
+    fun toChangePassword()
+
 }

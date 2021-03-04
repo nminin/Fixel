@@ -30,4 +30,10 @@
     <string name="id_number">ID NUMBER</string>
     <string name="hint_id_info">This information will help us to personalise your experience, but it is optional.</string>
     <string name="save">save</string>
+    <string name="old_password">OLD PASSWORD*</string>
+    <string name="enter_new_password">ENTER NEW PASSWORD*</string>
+    <string name="confirm_new_password">CONFIRM NEW PASSWORD*</string>
+    <string name="passwords_not_match">Passwords do not match</string>
+    <string name="hint_password_to_short">please enter 7 or more characters. leading and trailing spaces are ignored.</string>
+    <string name="hint_old_password_to_short">at least 7 characters.</string>
 </resources>

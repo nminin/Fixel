@@ -1,4 +1,4 @@
-package com.ronasit.account.ui
+package com.ronasit.account.ui.viewmodel
 
 import com.jakewharton.rxrelay3.BehaviorRelay
 import com.ronasit.core.base.ViewModel

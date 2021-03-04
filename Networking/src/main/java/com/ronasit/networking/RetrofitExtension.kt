@@ -124,6 +124,9 @@ class ErrorResponse {
     @SerializedName("message")
     @Expose
     var message: String = ""
+    @SerializedName("Message")
+    @Expose
+    var fixelMessage: String = ""
 
     @SerializedName("error")
     @Expose
@@ -131,6 +134,7 @@ class ErrorResponse {
 
     fun message(): String {
         return when {
+            fixelMessage.isNotBlank() -> fixelMessage
             message.isNotBlank() -> message
             error.isNotBlank() -> error
             else -> "Unknown Error"
