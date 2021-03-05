@@ -36,4 +36,9 @@
     <string name="passwords_not_match">Passwords do not match</string>
     <string name="hint_password_to_short">please enter 7 or more characters. leading and trailing spaces are ignored.</string>
     <string name="hint_old_password_to_short">at least 7 characters.</string>
+    <string name="how_to_pay">HOW TO PAY</string>
+    <string name="about_us">about us</string>
+    <string name="terms_conditions"><![CDATA[terms & conditions]]></string>
+    <string name="privacy_policy">privacy policy</string>
+    <string name="help_centre">help centre</string>
 </resources>

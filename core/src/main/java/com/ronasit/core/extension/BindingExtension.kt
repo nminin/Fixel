@@ -4,15 +4,19 @@ import android.os.Build
 import android.text.Html
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Switch
 import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputLayout
 import com.nminin.bindingbuilder.BindingBuilder
 import com.nminin.bindingbuilder.bind
+import com.nminin.bindingbuilder.recycler.ViewHolder
+import com.nminin.bindingbuilder.recycler.ViewHolderFactory
 import com.ronasit.core.BuildConfig
 import com.ronasit.core.model.HighlightText
 import com.ronasit.core.model.Style
@@ -113,7 +117,7 @@ fun BindingBuilder<Button>.highlightsBind(
 
 }
 
-fun <V: TextView>BindingBuilder<V>.highlightsEditTextBind(
+fun <V : TextView> BindingBuilder<V>.highlightsEditTextBind(
     style: Observable<Style>
 ) = this.apply {
     style.subscribe({
@@ -124,7 +128,7 @@ fun <V: TextView>BindingBuilder<V>.highlightsEditTextBind(
         .dispose(disposable)
 }
 
-fun <V: TextInputLayout>BindingBuilder<V>.highlightsInputLayoutBind(
+fun <V : TextInputLayout> BindingBuilder<V>.highlightsInputLayoutBind(
     style: Observable<Style>
 ) = this.apply {
     style.subscribe({
@@ -138,7 +142,7 @@ fun <V: TextInputLayout>BindingBuilder<V>.highlightsInputLayoutBind(
         .dispose(disposable)
 }
 
-fun <V: Switch>BindingBuilder<V>.highlightsSwitch(
+fun <V : Switch> BindingBuilder<V>.highlightsSwitch(
     style: Observable<Style>
 ) = this.apply {
     style.subscribe({
@@ -158,5 +162,18 @@ fun <V: Switch>BindingBuilder<V>.highlightsSwitch(
         .dispose(disposable)
 }
 
-fun <T: View>Fragment.bindView(@IdRes id: Int) = this.view!!.findViewById<T>(id)
+fun <T : View> Fragment.bindView(@IdRes id: Int) = this.view!!.findViewById<T>(id)
     .bind(this)
+
+fun <T : RecyclerView> Fragment.bindView(
+    @IdRes id: Int,
+    viewHolderFactory: ViewHolderFactory<T, ViewHolder<T>>
+) = this.view!!.findViewById<T>(id)
+    .bind(this, viewHolderFactory)
+
+fun <T : RecyclerView, R> Fragment.bindView(
+    @IdRes id: Int,
+    viewHolder: (parent: ViewGroup) -> ViewHolder<R>
+) = this.view!!.findViewById<T>(id)
+    .bind(this, viewHolder)
+

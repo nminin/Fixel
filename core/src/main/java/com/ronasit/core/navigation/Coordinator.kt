@@ -1,5 +1,7 @@
 package com.ronasit.core.navigation
 
+import com.ronasit.core.model.HelpCenterType
+
 interface Coordinator {
 
     fun navigateUp()
@@ -17,5 +19,7 @@ interface Coordinator {
     fun toAccountInfo()
 
     fun toChangePassword()
+
+    fun toHelp(helpCenterType: HelpCenterType)
 
 }

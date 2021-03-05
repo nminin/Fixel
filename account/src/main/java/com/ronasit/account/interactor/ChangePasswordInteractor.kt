@@ -1,7 +1,7 @@
 package com.ronasit.account.interactor
 
 import com.ronasit.account.networking.AccountApi
-import com.ronasit.account.networking.ChangePasswordRequest
+import com.ronasit.account.networking.model.ChangePasswordRequest
 import com.ronasit.core.base.SingleInteractor
 import com.ronasit.networking.singleResponse
 import io.reactivex.rxjava3.core.Single

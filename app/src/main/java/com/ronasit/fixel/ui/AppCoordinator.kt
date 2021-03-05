@@ -1,9 +1,12 @@
 package com.ronasit.fixel.ui
 
+import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.ronasit.account.ui.fragment.helpcenter.HelpCenterFragment
+import com.ronasit.core.model.HelpCenterType
 import com.ronasit.core.navigation.Coordinator
 import com.ronasit.fixel.R
 
@@ -46,6 +49,12 @@ class AppCoordinator: Coordinator {
 
     override fun toChangePassword() {
         getCurrentNavController()?.navigate(R.id.toChangePasswordFragment)
+    }
+
+    override fun toHelp(helpCenterType: HelpCenterType) {
+        getCurrentNavController()?.navigate(R.id.toHelpCenterFragment, Bundle().apply {
+            this.putString(HelpCenterFragment.HELP_CENTER_PAGE, helpCenterType.domain)
+        })
     }
 
     fun setNavController(navController: NavController) {

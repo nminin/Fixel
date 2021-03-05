@@ -3,6 +3,8 @@ package com.ronasit.account.di
 import com.google.gson.GsonBuilder
 import com.ronasit.account.interactor.ChangePasswordInteractor
 import com.ronasit.account.networking.AccountApi
+import com.ronasit.account.repository.HelpRepository
+import com.ronasit.account.ui.fragment.helpcenter.HelpCenterViewModel
 import com.ronasit.account.ui.viewmodel.AccountViewModel
 import com.ronasit.account.ui.viewmodel.ChangePasswordViewModel
 import com.ronasit.core.repository.PreferencesRepository
@@ -24,11 +26,13 @@ fun getAccountModule(apiUrl: String) = module {
     single<UserRepository> {
         com.ronasit.account.repository.UserRepository(get())
     }
+    single { HelpRepository(get()) }
 
     factory { ChangePasswordInteractor(get()) }
 
     viewModel { AccountViewModel(get()) }
     viewModel { ChangePasswordViewModel(androidContext(), get()) }
+    viewModel { HelpCenterViewModel(get()) }
 }
 
 private fun getAccountApi(apiUrl: String, preferencesRepository: PreferencesRepository) =

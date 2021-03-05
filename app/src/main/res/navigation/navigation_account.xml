@@ -18,10 +18,13 @@
         <action
             android:id="@+id/toAccountInfoFragment"
             app:destination="@id/accountInfoFragment" />
+        <action
+            android:id="@+id/toHelpCenterFragment"
+            app:destination="@id/helpCenterFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountInfoFragment"
-        android:name="com.ronasit.account.ui.fragment.AccountInfoFragment"
+        android:name="com.ronasit.account.ui.fragment.account.AccountInfoFragment"
         android:label="AccountInfoFragment" >
         <action
             android:id="@+id/toChangePasswordFragment"
@@ -29,6 +32,10 @@
     </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
-        android:name="com.ronasit.account.ui.fragment.ChangePasswordFragment"
+        android:name="com.ronasit.account.ui.fragment.account.ChangePasswordFragment"
         android:label="ChangePasswordFragment" />
+    <fragment
+        android:id="@+id/helpCenterFragment"
+        android:name="com.ronasit.account.ui.fragment.helpcenter.HelpCenterFragment"
+        android:label="HelpCenterFragment" />
 </navigation>

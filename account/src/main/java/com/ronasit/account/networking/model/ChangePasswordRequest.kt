@@ -1,4 +1,4 @@
-package com.ronasit.account.networking
+package com.ronasit.account.networking.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

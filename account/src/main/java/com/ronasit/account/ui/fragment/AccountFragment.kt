@@ -8,6 +8,7 @@ import com.ronasit.account.ui.viewmodel.AccountViewModel
 import com.ronasit.core.extension.bindView
 import com.ronasit.core.extension.highlightsBind
 import com.ronasit.core.extension.safeMap
+import com.ronasit.core.model.HelpCenterType
 import com.ronasit.core.model.HighlightText
 import com.ronasit.core.ui.Fragment
 import com.ronasit.core.ui.StyleViewModel
@@ -83,5 +84,19 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
                 styleViewModel.getStyle(),
                 "#000000"
             )
+
+        view.findViewById<TextView>(R.id.text_how_to_pay).setOnClickListener {
+            coordinator.toHelp(HelpCenterType.HOW_TO_PAY)
+        }
+        view.findViewById<TextView>(R.id.text_about_us).setOnClickListener {
+            coordinator.toHelp(HelpCenterType.ABOUT_US)
+        }
+        view.findViewById<TextView>(R.id.text_terms).setOnClickListener {
+            coordinator.toHelp(HelpCenterType.TERMS_AND_CONDITIONS)
+        }
+        view.findViewById<TextView>(R.id.text_privacy).setOnClickListener {
+            coordinator.toHelp(HelpCenterType.PRIVACY_POLICY)
+        }
+
     }
 }

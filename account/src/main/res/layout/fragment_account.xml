@@ -25,80 +25,93 @@
 
     </androidx.cardview.widget.CardView>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.cardview.widget.CardView
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardElevation="1dp">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_margin="16dp"
+                app:cardElevation="1dp">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/font_bebas_neue_bold"
-                    android:gravity="center"
-                    android:paddingTop="25dp"
-                    android:paddingBottom="24dp"
-                    android:text="@string/account"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="24sp" />
+                    android:orientation="vertical">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/divider_dark" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font_bebas_neue_bold"
+                        android:gravity="center"
+                        android:paddingTop="25dp"
+                        android:paddingBottom="24dp"
+                        android:text="@string/account"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="24sp" />
 
-                <include
-                    android:id="@+id/button_account"
-                    layout="@layout/item_menu" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/divider_dark" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/divider_dark" />
+                    <include
+                        android:id="@+id/button_account"
+                        layout="@layout/item_menu" />
 
-                <include
-                    android:id="@+id/button_card"
-                    layout="@layout/item_menu" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/divider_dark" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/divider_dark" />
+                    <include
+                        android:id="@+id/button_card"
+                        layout="@layout/item_menu" />
 
-                <include
-                    android:id="@+id/button_fbux"
-                    layout="@layout/item_menu" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/divider_dark" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/divider_dark" />
+                    <include
+                        android:id="@+id/button_fbux"
+                        layout="@layout/item_menu" />
 
-                <include
-                    android:id="@+id/button_orders"
-                    layout="@layout/item_menu" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/divider_dark" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/divider_dark" />
+                    <include
+                        android:id="@+id/button_orders"
+                        layout="@layout/item_menu" />
 
-                <include
-                    android:id="@+id/button_returns"
-                    layout="@layout/item_menu" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/divider_dark" />
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
+                    <include
+                        android:id="@+id/button_returns"
+                        layout="@layout/item_menu" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardElevation="1dp">
+                <include layout="@layout/layout_helpcenter"/>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

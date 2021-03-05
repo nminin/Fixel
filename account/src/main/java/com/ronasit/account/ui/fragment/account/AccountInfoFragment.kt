@@ -1,4 +1,4 @@
-package com.ronasit.account.ui.fragment
+package com.ronasit.account.ui.fragment.account
 
 import android.os.Bundle
 import android.view.View

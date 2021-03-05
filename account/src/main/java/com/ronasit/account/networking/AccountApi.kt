@@ -1,11 +1,10 @@
 package com.ronasit.account.networking
 
+import com.ronasit.account.model.HelpPage
+import com.ronasit.account.networking.model.ChangePasswordRequest
 import com.ronasit.core.model.User
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
+import retrofit2.http.*
 
 interface AccountApi {
     @GET("/accounts/informations")
@@ -13,5 +12,10 @@ interface AccountApi {
 
     @POST("/accounts/change_password")
     fun changePassword(@Body changePasswordRequest: ChangePasswordRequest): Call<Unit>
+
+    @GET("/static_page/get/{page}")
+    fun getHelpInfo(@Path("page") path: String): Call<HelpPage>
+
+
 
 }
