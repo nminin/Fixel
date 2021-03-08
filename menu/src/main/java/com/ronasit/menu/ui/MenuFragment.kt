@@ -12,6 +12,7 @@ import com.nminin.bindingbuilder.default.VisibilityDecorator
 import com.ronasit.core.extension.bindView
 import com.ronasit.core.extension.highlightsBind
 import com.ronasit.core.extension.toVisibility
+import com.ronasit.core.model.Category
 import com.ronasit.core.model.HighlightText
 import com.ronasit.core.ui.Fragment
 import com.ronasit.core.ui.StyleViewModel
@@ -27,7 +28,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
     override fun initView(view: View, savedInstanceState: Bundle?) {
         baseObserve(viewModel)
         view.findViewById<RecyclerView>(R.id.recycler_categories)
-            .bind(this) {
+            .bind<RecyclerView, Category>(this) {
                 CategoryViewHolder.create(it)
             }
             .layoutManager(

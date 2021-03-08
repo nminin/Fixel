@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputLayout
 import com.nminin.bindingbuilder.BindingBuilder
 import com.nminin.bindingbuilder.bind
+import com.nminin.bindingbuilder.recycler.RecyclerAdapterBindingBuilder
 import com.nminin.bindingbuilder.recycler.ViewHolder
 import com.nminin.bindingbuilder.recycler.ViewHolderFactory
 import com.ronasit.core.BuildConfig
@@ -55,6 +56,35 @@ fun BindingBuilder<TextView>.highlightsBind(
             it.printStackTrace()
         })
         .dispose(disposable)
+
+}
+
+fun TextView.setHighlightText(
+    highlightText: HighlightText,
+    style: Style,
+    customMainColor: String? = null
+) {
+    var text = highlightText.text ?: ""
+    highlightText.highlights.forEach {
+        text = text.replaceFirst(
+            "%@",
+            "</font><font color=${style.hilightColor}>${it}</font><font color=${customMainColor ?: style.textColor}>"
+        )
+    }
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        this.setText(
+            Html.fromHtml(
+                "<font color=${customMainColor ?: style.textColor}>${text}</font>",
+                Html.FROM_HTML_MODE_COMPACT
+            ),
+            TextView.BufferType.SPANNABLE
+        )
+    } else {
+        this.setText(
+            Html.fromHtml("<font color=${customMainColor ?: style.textColor}>${text}</font>"),
+            TextView.BufferType.SPANNABLE
+        )
+    }
 
 }
 
@@ -165,15 +195,15 @@ fun <V : Switch> BindingBuilder<V>.highlightsSwitch(
 fun <T : View> Fragment.bindView(@IdRes id: Int) = this.view!!.findViewById<T>(id)
     .bind(this)
 
-fun <T : RecyclerView> Fragment.bindView(
+fun <V : RecyclerView,T, VH:ViewHolder<T>, VHF: ViewHolderFactory<T, VH>> Fragment.bindView(
     @IdRes id: Int,
-    viewHolderFactory: ViewHolderFactory<T, ViewHolder<T>>
-) = this.view!!.findViewById<T>(id)
+    viewHolderFactory: VHF
+) = this.view!!.findViewById<V>(id)
     .bind(this, viewHolderFactory)
 
 fun <T : RecyclerView, R> Fragment.bindView(
     @IdRes id: Int,
     viewHolder: (parent: ViewGroup) -> ViewHolder<R>
-) = this.view!!.findViewById<T>(id)
+): RecyclerAdapterBindingBuilder<R, ViewHolder<R>, ViewHolderFactory<R, ViewHolder<R>>> = this.view!!.findViewById<T>(id)
     .bind(this, viewHolder)
 

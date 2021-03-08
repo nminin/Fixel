@@ -8,6 +8,8 @@ interface Coordinator {
 
     fun toLandingScreen()
 
+    fun toBrowseScreen()
+
     fun toSignUp()
 
     fun toLogIn()

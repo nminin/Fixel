@@ -27,6 +27,11 @@ class AppCoordinator: Coordinator {
         navController.navigate(R.id.landingFragment)
     }
 
+    override fun toBrowseScreen() {
+        bottomNavigationView.selectedItemId = R.id.browseHostFragment
+    }
+
+
     override fun toSignUp() {
         bottomNavigationView.selectedItemId = R.id.accountHostFragment
     }

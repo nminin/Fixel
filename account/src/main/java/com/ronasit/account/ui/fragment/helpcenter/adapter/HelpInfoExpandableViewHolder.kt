@@ -1,4 +1,4 @@
-package com.ronasit.account.ui.fragment.helpcenter
+package com.ronasit.account.ui.fragment.helpcenter.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,18 +6,20 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.nminin.bindingbuilder.recycler.ViewHolder
 import com.ronasit.account.R
 import com.ronasit.account.model.HelpInfo
 import com.ronasit.core.extension.toVisibility
+import com.ronasit.core.model.Style
+import com.ronasit.core.ui.adapter.StyledViewHolder
 
-class HelpCenterViewHolder(view: View): ViewHolder<HelpInfo>(view) {
+class HelpInfoExpandableViewHolder(view: View, style: Style) : StyledViewHolder<HelpInfo>(view, style) {
     private var isVisible = false
 
     companion object {
-        fun create(parent: ViewGroup, layout: Int = R.layout.item_help) =
-            HelpCenterViewHolder(
-                LayoutInflater.from(parent.context).inflate(layout, parent, false)
+        fun create(parent: ViewGroup, layout: Int = R.layout.item_help_expandable, style: Style) =
+            HelpInfoExpandableViewHolder(
+                LayoutInflater.from(parent.context).inflate(layout, parent, false),
+                style
             )
     }
 
@@ -41,8 +43,10 @@ class HelpCenterViewHolder(view: View): ViewHolder<HelpInfo>(view) {
                         R.drawable.ic_open
                     }
                 )
-                itemView.findViewById<TextView>(R.id.item_text_body).visibility = isVisible.toVisibility()
-                itemView.findViewById<View>(R.id.item_underline_body).visibility = isVisible.toVisibility()
+                itemView.findViewById<TextView>(R.id.item_text_body).visibility =
+                    isVisible.toVisibility()
+                itemView.findViewById<View>(R.id.item_underline_body).visibility =
+                    isVisible.toVisibility()
             }
 
         itemView.findViewById<ImageView>(R.id.item_image_header).setImageResource(

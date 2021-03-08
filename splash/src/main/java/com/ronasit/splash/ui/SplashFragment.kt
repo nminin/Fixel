@@ -13,7 +13,6 @@ class SplashFragment: Fragment(R.layout.fragment_splash) {
     override fun initView(view: View, savedInstanceState: Bundle?) {
         splashViewModel.isDataPreloaded()
             .subscribe({
-                coordinator.toLandingScreen()
             }, {
                 //ignore
             })

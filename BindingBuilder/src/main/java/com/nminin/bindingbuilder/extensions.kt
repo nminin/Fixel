@@ -20,19 +20,20 @@ fun <V : View> V.bind(lifecycleOwner: LifecycleOwner) = BindingBuilder(this, lif
 fun <V : RecyclerView, T> V.bind(
     lifecycleOwner: LifecycleOwner,
     viewHolder: (parent: ViewGroup) -> ViewHolder<T>
-) = RecyclerAdapterBindingBuilder(
-    this, lifecycleOwner, object : ViewHolderFactory<T, ViewHolder<T>>() {
-        override fun getViewType(item: T): Int = 1
+): RecyclerAdapterBindingBuilder<T, ViewHolder<T>, ViewHolderFactory<T, ViewHolder<T>>> =
+    RecyclerAdapterBindingBuilder(
+        this, lifecycleOwner, object : ViewHolderFactory<T, ViewHolder<T>>() {
+            override fun getViewType(item: T): Int = 1
 
-        override fun getViewHolder(viewType: Int, viewGroup: ViewGroup): ViewHolder<T> {
-            return viewHolder.invoke(viewGroup)
+            override fun getViewHolder(viewType: Int, viewGroup: ViewGroup): ViewHolder<T> {
+                return viewHolder.invoke(viewGroup)
+            }
         }
-    }
-)
+    )
 
-fun <V : RecyclerView, T> V.bind(
+fun <V : RecyclerView, T,VH:ViewHolder<T>,  VHF : ViewHolderFactory<T, VH>> V.bind(
     lifecycleOwner: LifecycleOwner,
-    viewHolderFactory: ViewHolderFactory<T, ViewHolder<T>>
+    viewHolderFactory: VHF
 ) = RecyclerAdapterBindingBuilder(
     this, lifecycleOwner, viewHolderFactory
 )
@@ -67,11 +68,12 @@ fun BindingBuilder<EditText>.onTextChanged(textListener: (String) -> Unit) = thi
     })
 }
 
-fun <V : CompoundButton> BindingBuilder<V>.onChecked(predicate: (isChecked: Boolean) ->Unit) = this.apply {
-    view.setOnCheckedChangeListener { buttonView, isChecked ->
-        predicate.invoke(isChecked)
+fun <V : CompoundButton> BindingBuilder<V>.onChecked(predicate: (isChecked: Boolean) -> Unit) =
+    this.apply {
+        view.setOnCheckedChangeListener { buttonView, isChecked ->
+            predicate.invoke(isChecked)
+        }
     }
-}
 
 fun BindingBuilder<SwipeRefreshLayout>.onRefresh(action: () -> Unit) {
     view.setOnRefreshListener {

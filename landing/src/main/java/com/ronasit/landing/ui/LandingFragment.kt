@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.nminin.bindingbuilder.bind
 import com.nminin.bindingbuilder.default.ButtonTextDecorator
 import com.nminin.bindingbuilder.default.TextDecorator
@@ -15,6 +16,7 @@ import com.ronasit.core.base.binding.GlideImageDecorator
 import com.ronasit.core.extension.highlightsBind
 import com.ronasit.core.extension.safeMap
 import com.ronasit.core.extension.toVisibility
+import com.ronasit.core.model.Category
 import com.ronasit.core.ui.CustomDialogHost
 import com.ronasit.core.ui.Fragment
 import com.ronasit.core.ui.StyleViewModel
@@ -53,7 +55,7 @@ class LandingFragment : Fragment(R.layout.fragment_landing) {
                     "#000000"
                 )
 
-            this.recyclerCategories.bind(viewLifecycleOwner) {
+            this.recyclerCategories.bind<RecyclerView, Category>(viewLifecycleOwner) {
                 CategoryViewHolder.create(it)
             }
                 .layoutManager(

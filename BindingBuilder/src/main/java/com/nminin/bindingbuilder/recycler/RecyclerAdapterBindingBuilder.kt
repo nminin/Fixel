@@ -4,10 +4,10 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.nminin.bindingbuilder.BaseRecyclerBindingBuilder
 
-class RecyclerAdapterBindingBuilder<T,V: ViewHolder<T>>(
+class RecyclerAdapterBindingBuilder<T,VH: ViewHolder<T>, VHF: ViewHolderFactory<T,VH>>(
     private val view: RecyclerView,
     lifecycleOwner: LifecycleOwner,
-    private val viewHolder: ViewHolderFactory<T,V>
-): BaseRecyclerBindingBuilder<T,V, RecyclerAdapter<T,V>>(view, lifecycleOwner) {
-    override var adapter: RecyclerAdapter<T, V> = RecyclerAdapter(viewHolder)
+    val viewHolderFactory: VHF
+): BaseRecyclerBindingBuilder<T,VH, RecyclerAdapter<T,VH>>(view, lifecycleOwner) {
+    override var adapter: RecyclerAdapter<T, VH> = RecyclerAdapter(viewHolderFactory)
 }
