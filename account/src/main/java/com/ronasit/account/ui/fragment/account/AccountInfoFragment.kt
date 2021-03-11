@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.AppCompatButton
+import com.google.android.material.textfield.TextInputLayout
 import com.nminin.bindingbuilder.default.CheckedDecorator
 import com.nminin.bindingbuilder.default.TextDecorator
 import com.nminin.bindingbuilder.onChecked
@@ -54,6 +55,7 @@ class AccountInfoFragment: Fragment(R.layout.fragment_account_info) {
             .onTextChanged {
                 accountViewModel.setFirstName(it)
             }
+
         bindView<EditText>(R.id.text_last_name)
             .highlightsEditTextBind(styleViewModel.getStyle())
             .observe(accountViewModel.getUser().safeMap {
@@ -86,6 +88,17 @@ class AccountInfoFragment: Fragment(R.layout.fragment_account_info) {
             .onTextChanged {
                 accountViewModel.setID(it)
             }
+
+        bindView<TextInputLayout>(R.id.input_layout_first_name)
+            .highlightsInputLayoutBind(styleViewModel.getStyle())
+        bindView<TextInputLayout>(R.id.input_layout_last_name)
+            .highlightsInputLayoutBind(styleViewModel.getStyle())
+        bindView<TextInputLayout>(R.id.input_layout_email)
+            .highlightsInputLayoutBind(styleViewModel.getStyle())
+        bindView<TextInputLayout>(R.id.input_layout_phone)
+            .highlightsInputLayoutBind(styleViewModel.getStyle())
+        bindView<TextInputLayout>(R.id.input_layout_id)
+            .highlightsInputLayoutBind(styleViewModel.getStyle())
 
         bindView<AppCompatButton>(R.id.button_save)
             .highlightsBind(styleViewModel.getStyle())
