@@ -24,7 +24,7 @@ class IdInfoDialogFragment: CustomDialogFragment(R.layout.dialog_id_info) {
             .bind(this.viewLifecycleOwner)
             .observe(styleViewModel.getStyle(), object: BindingDecorator<TextView, Style>() {
                 override fun bind(view: TextView, item: Style) {
-                    view.setTextColor(resources.getColor(item.buttonBackgroundColor))
+                    view.setTextColor(resources.getColor(item.buttonTintColor))
                 }
             })
     }

@@ -4,6 +4,7 @@ import com.jakewharton.rxrelay3.BehaviorRelay
 import com.jakewharton.rxrelay3.Relay
 import com.nminin.corearchcomponents.core.data.Specification
 import com.ronasit.core.base.Mapper
+import com.ronasit.core.model.Optional
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -28,14 +29,14 @@ fun <T> Single<T>.progress(liveData: BehaviorRelay<Boolean>) = this
 
 fun <T> Relay<T>.asObservable() = this as Observable<T>
 
-fun <T> Single<T>.acceptTo(success: Relay<T>? = null, error: Relay<Throwable>? = null) = this
+fun <T> Single<T>.safeSubscribe(success: Relay<T>? = null, error: Relay<Throwable>? = null) = this
     .subscribe({
         success?.accept(it)
     }, {
         error?.accept(it)
     })
 
-fun <T> Single<T>.toRelay(relay: Relay<T>? = null) = this
+fun <T> Single<T>.accepTo(relay: Relay<T>? = null) = this
     .doOnSuccess {
         relay?.accept(it)
     }
@@ -48,7 +49,7 @@ fun <T> Single<T>.unit() = this.map {
     Unit
 }
 
-fun <T> Observable<T>.acceptTo(success: Relay<T>? = null, error: Relay<Throwable>? = null) = this
+fun <T> Observable<T>.safeSubscribe(success: Relay<T>? = null, error: Relay<Throwable>? = null) = this
     .subscribe({
         success?.accept(it)
     }, {
@@ -104,5 +105,17 @@ fun <T,R> Observable<T>.safeMap(action: (T) -> R?) = this
     .map {
         action.invoke(it)!!
     }
+
+fun <T> Observable<Optional<T>>.fromOptional() = this.safeMap {
+    it.value
+}
+fun <T> Observable<T>.toOptional() = this.map {
+    Optional(it)
+}
+fun <T> Single<T>.toOptional() = this.map {
+    Optional(it)
+}
+
+
 
 

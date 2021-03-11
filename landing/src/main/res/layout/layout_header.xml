@@ -92,7 +92,7 @@
         app:layout_constraintTop_toTopOf="@+id/text_promo"
         app:srcCompat="@drawable/ic_info_outlined" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_header"
         style="@style/ButtonTint"
         android:layout_width="0dp"

@@ -45,9 +45,7 @@ class HelpCenterFragment : Fragment(R.layout.fragment_help_center) {
                             onBackPressed()
                         }
                     bindView<TextView>(R.id.text_header)
-                        .observe(viewModel.getHelpPage(helpPage).safeMap {
-                            it.name
-                        }, TextDecorator())
+                        .observe(viewModel.getTitle(helpPage), TextDecorator())
                     view.findViewById<RecyclerView>(R.id.recycler_view_help)
                         .bind(
                             this, HelpInfoViewHolderFactory(
@@ -65,9 +63,7 @@ class HelpCenterFragment : Fragment(R.layout.fragment_help_center) {
                                 false
                             )
                         )
-                        .observeItems(viewModel.getHelpPage(helpPage).map {
-                            it.content
-                        })
+                        .observeItems(viewModel.getItems(helpPage))
                 }
 
         }

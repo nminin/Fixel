@@ -1,6 +1,5 @@
 package com.ronasit.authorization.ui
 
-import android.util.Log
 import com.jakewharton.rxrelay3.PublishRelay
 import com.ronasit.authorization.data.interactor.LoginInteractor
 import com.ronasit.authorization.data.interactor.SignupInteractor
@@ -24,7 +23,7 @@ class AuthorizationViewModel(
 
     init {
         userRepository.refresh()
-            .acceptTo()
+            .safeSubscribe()
             .dispose(disposeBag)
     }
 
@@ -61,7 +60,7 @@ class AuthorizationViewModel(
                     }
                 }
             }
-            .acceptTo(null, error)
+            .safeSubscribe(null, error)
             .dispose(disposeBag)
     }
 
@@ -109,7 +108,7 @@ class AuthorizationViewModel(
                     }
                 }
             }
-            .acceptTo(null, error)
+            .safeSubscribe(null, error)
             .dispose(disposeBag)
     }
 

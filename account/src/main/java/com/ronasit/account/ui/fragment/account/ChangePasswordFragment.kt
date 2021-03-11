@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import com.google.android.material.textfield.TextInputLayout
 import com.nminin.bindingbuilder.default.TextDecorator
 import com.nminin.bindingbuilder.default.VisibilityDecorator
@@ -90,7 +91,7 @@ class ChangePasswordFragment: Fragment(R.layout.fragment_change_password) {
                 it.value
             }, TextDecorator())
 
-        bindView<Button>(R.id.button_change_password)
+        bindView<AppCompatButton>(R.id.button_change_password)
             .highlightsBind(styleViewModel.getStyle())
             .observe(changePasswordViewModel.isSaveChangesAvailable(), EnabledDecorator())
             .onClick {

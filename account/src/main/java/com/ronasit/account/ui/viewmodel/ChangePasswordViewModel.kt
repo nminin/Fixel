@@ -1,12 +1,11 @@
 package com.ronasit.account.ui.viewmodel
 
 import android.content.Context
-import android.util.Log
 import com.jakewharton.rxrelay3.PublishRelay
 import com.ronasit.account.R
 import com.ronasit.account.interactor.ChangePasswordInteractor
 import com.ronasit.core.base.ViewModel
-import com.ronasit.core.extension.acceptTo
+import com.ronasit.core.extension.safeSubscribe
 import com.ronasit.core.extension.asObservable
 import com.ronasit.core.extension.behaviorRelay
 import com.ronasit.core.extension.dispose
@@ -90,7 +89,7 @@ class ChangePasswordViewModel(
             .doOnError {
                 oldPasswordError.accept(Optional(it.localizedMessage))
             }
-            .acceptTo(onPasswordChanged)
+            .safeSubscribe(onPasswordChanged)
             .dispose(disposeBag)
 
     }

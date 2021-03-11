@@ -2,7 +2,7 @@ package com.ronasit.account.ui.viewmodel
 
 import com.jakewharton.rxrelay3.BehaviorRelay
 import com.ronasit.core.base.ViewModel
-import com.ronasit.core.extension.acceptTo
+import com.ronasit.core.extension.safeSubscribe
 import com.ronasit.core.extension.dispose
 import com.ronasit.core.extension.progress
 import com.ronasit.core.model.User
@@ -18,13 +18,13 @@ class AccountViewModel(
     init {
         userRepository
             .refresh()
-            .acceptTo()
+            .safeSubscribe()
             .dispose(disposeBag)
         userRepository.get()
             .map {
                 it.value?.copy()
             }
-            .acceptTo(userInfo)
+            .safeSubscribe(userInfo)
             .dispose(disposeBag)
     }
 
@@ -39,6 +39,7 @@ class AccountViewModel(
                     && (changedUser.firstName != user.value?.firstName
                     || changedUser.lastName != user.value?.lastName
                     || changedUser.email != user.value?.email
+                    || changedUser.gender != user.value?.gender
                     || changedUser.phoneNumber != user.value?.phoneNumber
                     || changedUser.identificationNumber != user.value?.identificationNumber)
         }
@@ -49,7 +50,7 @@ class AccountViewModel(
             userInfo.value
         )
             .progress(progress)
-            .acceptTo()
+            .safeSubscribe()
             .dispose(disposeBag)
     }
 
@@ -71,6 +72,17 @@ class AccountViewModel(
                 userInfo.accept(
                     it.apply {
                         this.lastName = value
+                    }
+                )
+            }
+        }
+    }
+    fun setGender(value: User.Gender?) {
+        userInfo.value?.let {
+            if (it.gender != value) {
+                userInfo.accept(
+                    it.apply {
+                        this.gender = value
                     }
                 )
             }

@@ -2,7 +2,7 @@ package com.ronasit.splash.ui
 
 import com.jakewharton.rxrelay3.PublishRelay
 import com.ronasit.core.base.ViewModel
-import com.ronasit.core.extension.acceptTo
+import com.ronasit.core.extension.safeSubscribe
 import com.ronasit.core.extension.dispose
 import com.ronasit.core.repository.LandingRepository
 import com.ronasit.core.repository.UserRepository
@@ -30,7 +30,7 @@ class SplashViewModel(
                         Single.just(Unit)
                     }
             }
-            .acceptTo(onDataPreloaded, error)
+            .safeSubscribe(onDataPreloaded, error)
             .dispose(disposeBag)
     }
 }

@@ -1,7 +1,7 @@
 package com.ronasit.menu.ui
 
 import com.ronasit.core.base.ViewModel
-import com.ronasit.core.extension.acceptTo
+import com.ronasit.core.extension.safeSubscribe
 import com.ronasit.core.extension.dispose
 import com.ronasit.core.interactor.LogoutInteractor
 import com.ronasit.core.repository.LandingRepository
@@ -14,8 +14,12 @@ class MenuViewModel(
 ): ViewModel() {
     init {
         userRepository.refresh()
-            .acceptTo()
+            .safeSubscribe()
             .dispose(disposeBag)
+    }
+
+    fun isUserLoggedIn() = userRepository.get().map {
+        it.value != null
     }
 
     fun getUser() = userRepository.get()
@@ -27,7 +31,7 @@ class MenuViewModel(
 
     fun logout() {
         logoutInteractor.execute()
-            .acceptTo()
+            .safeSubscribe()
             .dispose(disposeBag)
     }
 

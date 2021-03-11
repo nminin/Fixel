@@ -32,7 +32,7 @@ class StyleViewHolder(view: View) : SelectableViewHolder<Style>(view) {
     override fun isSelected(item: Style, selectedItems: List<Style>) {
         with(itemView.findViewById<TextView>(R.id.item_style)) {
             if (selectedItems.contains(item)) {
-                setTextColor(resources.getColor(item.buttonBackgroundColor))
+                setTextColor(resources.getColor(item.buttonTintColor))
             } else {
                 setTextColor(resources.getColor(R.color.white))
             }

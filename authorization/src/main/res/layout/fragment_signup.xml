@@ -207,9 +207,9 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_sign_up"
-        style="@style/ButtonYelow"
+        style="@style/ButtonTint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"

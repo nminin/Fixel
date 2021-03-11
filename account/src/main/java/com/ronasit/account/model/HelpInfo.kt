@@ -38,4 +38,30 @@ data class HelpInfo(
     @SerializedName("is_enabled")
     @Expose
     var isEnabled: Boolean
-)
+) {
+    fun getType() = when {
+        !this.backgroundImage.isNullOrEmpty() &&
+                this.headerHighlightText != null -> Type.BACKGROUND_IMAGE_COLORED
+        !this.backgroundImage.isNullOrEmpty() &&
+                !this.headerText.isNullOrEmpty() -> Type.BACKGROUND_IMAGE
+        !this.headerText.isNullOrEmpty() &&
+                !this.preheaderText.isNullOrEmpty() -> Type.REGULAR
+        !this.buttonText.isNullOrEmpty() -> Type.BUTTON
+        !this.logo.isNullOrEmpty() -> Type.LOGO
+        !this.images.isNullOrEmpty() -> Type.IMAGES
+        !this.headerText.isNullOrEmpty() &&
+                !this.bodyText.isNullOrEmpty() -> Type.EXPANDABLE
+        else -> Type.EMPTY
+    }
+
+    enum class Type(val id: Int) {
+        EMPTY(0),
+        BACKGROUND_IMAGE_COLORED(1),
+        BACKGROUND_IMAGE(2),
+        REGULAR(3),
+        BUTTON(4),
+        LOGO(5),
+        IMAGES(6),
+        EXPANDABLE(7)
+    }
+}

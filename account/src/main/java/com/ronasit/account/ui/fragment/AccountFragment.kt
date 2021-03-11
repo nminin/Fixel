@@ -1,8 +1,11 @@
 package com.ronasit.account.ui.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import com.ronasit.account.R
 import com.ronasit.account.ui.viewmodel.AccountViewModel
 import com.ronasit.core.extension.bindView
@@ -84,6 +87,14 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
                 styleViewModel.getStyle(),
                 "#000000"
             )
+        bindView<AppCompatButton>(R.id.button_contact_us)
+            .highlightsBind(
+                styleViewModel.getStyle()
+            )
+            .onClick {
+                startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + getString(R.string.conact_us_phone))))
+            }
+
 
         view.findViewById<TextView>(R.id.text_how_to_pay).setOnClickListener {
             coordinator.toHelp(HelpCenterType.HOW_TO_PAY)

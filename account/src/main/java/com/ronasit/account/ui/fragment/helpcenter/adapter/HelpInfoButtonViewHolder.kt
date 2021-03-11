@@ -47,7 +47,7 @@ class HelpInfoButtonViewHolder(
             }
             this.backgroundTintList = ContextCompat.getColorStateList(
                 this.context,
-                style.buttonBackgroundColor
+                style.buttonTintColor
             )
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 this.compoundDrawableTintList = ContextCompat.getColorStateList(

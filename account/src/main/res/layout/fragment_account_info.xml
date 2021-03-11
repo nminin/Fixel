@@ -112,8 +112,7 @@
                 <include layout="@layout/layout_card" />
             </androidx.cardview.widget.CardView>
 
-            <Button
-                android:visibility="gone"
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_save"
                 style="@style/ButtonTint"
                 android:text="@string/save"

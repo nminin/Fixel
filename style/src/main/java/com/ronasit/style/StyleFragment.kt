@@ -5,10 +5,12 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nminin.bindingbuilder.bind
 import com.nminin.bindingbuilder.bindSelectable
+import com.ronasit.core.extension.bindView
 import com.ronasit.core.extension.highlightsBind
 import com.ronasit.core.model.HighlightText
 import com.ronasit.core.ui.Fragment
@@ -35,8 +37,7 @@ class StyleFragment() : Fragment(R.layout.fragment_style), OnFragmentBackPressed
                 onBackPressed()
             }
 
-        view.findViewById<Button>(R.id.button_save)
-            .bind(this)
+        bindView<AppCompatButton>(R.id.button_save)
             .highlightsBind(
                 viewModel.getSelectedStyle()
             )

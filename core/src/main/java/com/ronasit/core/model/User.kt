@@ -12,7 +12,7 @@ data class User(
     var lastName: String? = null,
     @SerializedName("gender")
     @Expose
-    var gender: String? = null,
+    var gender: Gender? = null,
     @SerializedName("identification_number")
     @Expose
     var identificationNumber: String? = null,
@@ -22,4 +22,11 @@ data class User(
     @SerializedName("phone_number")
     @Expose
     var phoneNumber: String? = null
-)
+) {
+    enum class Gender(name: String) {
+        @SerializedName("male")
+        MALE("male"),
+        @SerializedName("female")
+        FEMALE("female")
+    }
+}

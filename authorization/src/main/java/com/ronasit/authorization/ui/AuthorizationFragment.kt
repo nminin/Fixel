@@ -1,17 +1,12 @@
 package com.ronasit.authorization.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.ScrollView
 import android.widget.TextView
 import com.google.android.material.tabs.TabLayout
-import com.nminin.bindingbuilder.bind
 import com.ronasit.authorization.R
 import com.ronasit.core.extension.dispose
-import com.ronasit.core.extension.highlightsEditTextBind
 import com.ronasit.core.ui.Fragment
 import com.ronasit.core.ui.OnFragmentBackPressed
 import com.ronasit.core.ui.StyleViewModel
@@ -38,9 +33,9 @@ class AuthorizationFragment : Fragment(R.layout.fragment_authorization), OnFragm
         with(view.findViewById<TabLayout>(R.id.tabs)) {
 
             styleViewModel.getStyle().subscribe {
-                this.setSelectedTabIndicatorColor(resources.getColor(it.buttonBackgroundColor))
+                this.setSelectedTabIndicatorColor(resources.getColor(it.buttonTintColor))
                 this.setTabTextColors(resources.getColor(R.color.white), resources.getColor(it.buttonTextColor))
-                view.findViewById<View>(R.id.view_underline).setBackgroundColor(resources.getColor(it.buttonBackgroundColor))
+                view.findViewById<View>(R.id.view_underline).setBackgroundColor(resources.getColor(it.buttonTintColor))
             }
                 .dispose(disposable)
             this.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {

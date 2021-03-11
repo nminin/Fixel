@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nminin.bindingbuilder.bind
@@ -67,9 +68,16 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
                 ),
                 styleViewModel.getStyle()
             )
+            .observe(viewModel.isUserLoggedIn().map {
+                (!it).toVisibility()
+            }, VisibilityDecorator())
             .onClick {
                 notImplementedYet()
             }
+        bindView<View>(R.id.divider_personalise)
+            .observe(viewModel.isUserLoggedIn().map {
+                (!it).toVisibility()
+            }, VisibilityDecorator())
 
         view.findViewById<TextView>(R.id.text_account)
             .bind(this)
@@ -81,6 +89,9 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
                 ),
                 styleViewModel.getStyle()
             )
+            .observe(viewModel.isUserLoggedIn().map {
+                it.toVisibility()
+            }, VisibilityDecorator())
             .onClick {
                 notImplementedYet()
             }
@@ -95,9 +106,21 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
                 ),
                 styleViewModel.getStyle()
             )
+            .observe(viewModel.isUserLoggedIn().map {
+                it.toVisibility()
+            }, VisibilityDecorator())
             .onClick {
                 notImplementedYet()
             }
+        bindView<View>(R.id.divider_track)
+            .observe(viewModel.isUserLoggedIn().map {
+                it.toVisibility()
+            }, VisibilityDecorator())
+        bindView<View>(R.id.divider_account)
+            .observe(viewModel.isUserLoggedIn().map {
+                it.toVisibility()
+            }, VisibilityDecorator())
+
         view.findViewById<TextView>(R.id.text_invite)
             .bind(this)
             .highlightsBind(
@@ -146,8 +169,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
             )
 
 
-        view.findViewById<Button>(R.id.button_log_in)
-            .bind(this)
+        bindView<AppCompatButton>(R.id.button_log_in)
             .highlightsBind(
                 styleViewModel.getStyle()
             )

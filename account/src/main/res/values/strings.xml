@@ -41,4 +41,6 @@
     <string name="terms_conditions"><![CDATA[terms & conditions]]></string>
     <string name="privacy_policy">privacy policy</string>
     <string name="help_centre">help centre</string>
+    <string name="contact_us">Contact us</string>
+    <string name="conact_us_phone">+79990000000</string>
 </resources>

@@ -1,15 +1,16 @@
 package com.ronasit.core.extension
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Build
 import android.text.Html
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Switch
 import android.widget.TextView
 import androidx.annotation.IdRes
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputLayout
@@ -18,12 +19,10 @@ import com.nminin.bindingbuilder.bind
 import com.nminin.bindingbuilder.recycler.RecyclerAdapterBindingBuilder
 import com.nminin.bindingbuilder.recycler.ViewHolder
 import com.nminin.bindingbuilder.recycler.ViewHolderFactory
-import com.ronasit.core.BuildConfig
 import com.ronasit.core.model.HighlightText
 import com.ronasit.core.model.Style
 import com.ronasit.core.ui.Fragment
 import io.reactivex.rxjava3.core.Observable
-import java.time.format.TextStyle
 
 fun BindingBuilder<TextView>.highlightsBind(
     data: Observable<HighlightText>,
@@ -119,27 +118,29 @@ fun BindingBuilder<TextView>.highlightsBind(
         .dispose(disposable)
 }
 
-fun BindingBuilder<Button>.highlightsBind(
+@SuppressLint("RestrictedApi")
+fun BindingBuilder<AppCompatButton>.highlightsBind(
     style: Observable<Style>
 ) = this.apply {
 
     style.subscribe({
-        this.view.backgroundTintList = ContextCompat.getColorStateList(
-            this.view.context,
-            it.buttonBackgroundColor
-        )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             this.view.compoundDrawableTintList = ContextCompat.getColorStateList(
                 this.view.context,
                 it.buttonTextColor
             )
         }
+        this.view.supportBackgroundTintList = ContextCompat.getColorStateList(
+            this.view.context,
+            it.buttonTintColor
+        )
         this.view.setTextColor(
             ContextCompat.getColorStateList(
                 this.view.context,
                 it.buttonTextColor
             )
         )
+        this.view.backgroundTintList
     }, {
         //ignore
     })
@@ -151,7 +152,7 @@ fun <V : TextView> BindingBuilder<V>.highlightsEditTextBind(
     style: Observable<Style>
 ) = this.apply {
     style.subscribe({
-        this.view.setCursorDrawableColor(it.buttonBackgroundColor)
+        this.view.setCursorDrawableColor(it.buttonTintColor)
     }, {
         //ignore
     })
@@ -164,7 +165,7 @@ fun <V : TextInputLayout> BindingBuilder<V>.highlightsInputLayoutBind(
     style.subscribe({
         this.view.hintTextColor = ContextCompat.getColorStateList(
             this.view.context,
-            it.buttonBackgroundColor
+            it.buttonTintColor
         )
     }, {
         //ignore

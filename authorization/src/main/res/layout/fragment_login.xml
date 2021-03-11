@@ -112,7 +112,7 @@
 
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_login"
         style="@style/ButtonYelow"
         android:layout_width="match_parent"

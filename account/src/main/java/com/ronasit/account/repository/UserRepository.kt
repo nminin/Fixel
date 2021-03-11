@@ -1,7 +1,10 @@
 package com.ronasit.account.repository
 
+import com.ronasit.account.model.UpdateAccountInfo
 import com.ronasit.account.networking.AccountApi
+import com.ronasit.core.extension.accepTo
 import com.ronasit.core.extension.behaviorRelay
+import com.ronasit.core.extension.toOptional
 import com.ronasit.core.extension.unit
 import com.ronasit.core.model.Optional
 import com.ronasit.core.model.User
@@ -31,7 +34,12 @@ internal class UserRepository(
             data.accept(Optional(null))
         }
 
-    override fun update(item: User): Single<Unit> = Single.just(Unit)
+    override fun update(item: User): Single<Unit> = api.updateAccount(
+        UpdateAccountInfo.fromUser(item)
+    )
+        .singleResponse()
+        .toOptional()
+        .accepTo(data)
         .flatMap {
             refresh()
         }

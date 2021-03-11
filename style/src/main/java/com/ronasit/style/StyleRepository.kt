@@ -1,8 +1,7 @@
 package com.ronasit.style
 
-import android.util.Log
 import com.ronasit.core.extension.behaviorRelay
-import com.ronasit.core.extension.toRelay
+import com.ronasit.core.extension.accepTo
 import com.ronasit.core.extension.unit
 import com.ronasit.core.model.Style
 import com.ronasit.core.repository.PreferencesRepository
@@ -22,7 +21,7 @@ class StyleRepository(private val preferencesRepository: PreferencesRepository):
         .doOnSuccess {
             preferencesRepository.setDefaultStyle(it.name)
         }
-        .toRelay(style)
+        .accepTo(style)
         .unit()
 
     private fun getDefaultStyle() = Style.getAll()

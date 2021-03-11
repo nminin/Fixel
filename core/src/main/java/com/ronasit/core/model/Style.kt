@@ -6,7 +6,7 @@ import com.ronasit.core.R
 enum class Style private constructor(
     val hilightColor: String,
     val textColor: String,
-    val buttonBackgroundColor: Int,
+    val buttonTintColor: Int,
     val buttonTextColor: Int,
     val iconTint: Int,
     val switchTint: Int

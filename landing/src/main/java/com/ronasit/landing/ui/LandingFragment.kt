@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nminin.bindingbuilder.bind
@@ -13,6 +14,7 @@ import com.nminin.bindingbuilder.default.ButtonTextDecorator
 import com.nminin.bindingbuilder.default.TextDecorator
 import com.nminin.bindingbuilder.default.VisibilityDecorator
 import com.ronasit.core.base.binding.GlideImageDecorator
+import com.ronasit.core.extension.bindView
 import com.ronasit.core.extension.highlightsBind
 import com.ronasit.core.extension.safeMap
 import com.ronasit.core.extension.toVisibility
@@ -129,17 +131,15 @@ class LandingFragment : Fragment(R.layout.fragment_landing) {
             this.imageInfo.setOnClickListener {
                 showInfoDialog()
             }
-
-            (this.buttonHeader as Button)
-                .bind(this@LandingFragment)
-                .highlightsBind(styleViewModel.getStyle())
-                .observe(landingViewModel.getLandingModel().map {
-                    it.buttonText
-                }, ButtonTextDecorator())
-                .observe(landingViewModel.getLandingModel().map {
-                    it.buttonVisibility.toVisibility(View.GONE)
-                }, VisibilityDecorator())
         }
+        bindView<AppCompatButton>(R.id.button_header)
+            .highlightsBind(styleViewModel.getStyle())
+            .observe(landingViewModel.getLandingModel().map {
+                it.buttonText
+            }, ButtonTextDecorator())
+            .observe(landingViewModel.getLandingModel().map {
+                it.buttonVisibility.toVisibility(View.GONE)
+            }, VisibilityDecorator())
     }
 
     private fun openLink(link: String) {

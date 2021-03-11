@@ -1,15 +1,21 @@
 package com.ronasit.account.ui.fragment.account
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.appcompat.widget.AppCompatButton
+import com.nminin.bindingbuilder.default.CheckedDecorator
 import com.nminin.bindingbuilder.default.TextDecorator
+import com.nminin.bindingbuilder.onChecked
 import com.nminin.bindingbuilder.onTextChanged
 import com.ronasit.account.R
+import com.ronasit.account.ui.fragment.decorator.GenderSwitchDecorator
 import com.ronasit.account.ui.viewmodel.AccountViewModel
 import com.ronasit.core.base.binding.EnabledDecorator
 import com.ronasit.core.extension.*
 import com.ronasit.core.model.HighlightText
+import com.ronasit.core.model.User
 import com.ronasit.core.ui.CustomDialogHost
 import com.ronasit.core.ui.Fragment
 import com.ronasit.core.ui.StyleViewModel
@@ -81,7 +87,7 @@ class AccountInfoFragment: Fragment(R.layout.fragment_account_info) {
                 accountViewModel.setID(it)
             }
 
-        bindView<Button>(R.id.button_save)
+        bindView<AppCompatButton>(R.id.button_save)
             .highlightsBind(styleViewModel.getStyle())
             .observe(accountViewModel.isSaveAvailable(), EnabledDecorator())
             .onClick {
@@ -95,10 +101,29 @@ class AccountInfoFragment: Fragment(R.layout.fragment_account_info) {
 
         bindView<Switch>(R.id.switch_male)
             .highlightsSwitch(styleViewModel.getStyle())
+            .observe(accountViewModel.getUser().map {
+                it.gender == User.Gender.MALE
+            }, GenderSwitchDecorator())
+            .onChecked {
+                if (it) {
+                    accountViewModel.setGender(User.Gender.MALE)
+                }
+            }
         bindView<Switch>(R.id.switch_female)
             .highlightsSwitch(styleViewModel.getStyle())
+            .observe(accountViewModel.getUser().map {
+                it.gender == User.Gender.FEMALE
+            }, GenderSwitchDecorator())
+            .onChecked {
+                if (it) {
+                    accountViewModel.setGender(User.Gender.FEMALE)
+                }
+            }
         bindView<Switch>(R.id.switch_non_binary)
             .highlightsSwitch(styleViewModel.getStyle())
+            .observe(accountViewModel.getUser().map {
+                it.gender == User.Gender.FEMALE
+            }, CheckedDecorator())
 
     }
 

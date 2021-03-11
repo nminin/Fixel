@@ -1,7 +1,7 @@
 package com.ronasit.style
 
 import com.ronasit.core.base.ViewModel
-import com.ronasit.core.extension.acceptTo
+import com.ronasit.core.extension.safeSubscribe
 import com.ronasit.core.extension.asObservable
 import com.ronasit.core.extension.behaviorRelay
 import com.ronasit.core.extension.dispose
@@ -15,7 +15,7 @@ class ChooseStyleViewModel(private val styleRepository: StyleRepository): ViewMo
 
     init {
         styleRepository.get()
-            .acceptTo(selectedStyle)
+            .safeSubscribe(selectedStyle)
             .dispose(disposeBag)
     }
 
@@ -30,7 +30,7 @@ class ChooseStyleViewModel(private val styleRepository: StyleRepository): ViewMo
             .flatMap {
                 styleRepository.set(it)
             }
-            .acceptTo()
+            .safeSubscribe()
             .dispose(disposeBag)
     }
 
