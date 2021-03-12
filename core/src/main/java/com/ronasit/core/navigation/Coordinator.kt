@@ -10,6 +10,10 @@ interface Coordinator {
 
     fun toBrowseScreen()
 
+    fun toLanding()
+
+    fun toBrands()
+
     fun toSignUp()
 
     fun toLogIn()

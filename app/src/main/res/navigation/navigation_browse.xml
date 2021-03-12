@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation_browse"
-    app:startDestination="@id/landingFragment">
+    app:startDestination="@id/landingSplashFragment">
 
     <fragment
         android:id="@+id/landingFragment"
-        android:name="com.ronasit.landing.ui.LandingFragment"
+        android:name="com.ronasit.landing.ui.landing.LandingFragment"
         android:label="LandingFragment" />
+    <fragment
+        android:id="@+id/brandsLandingFragment"
+        android:name="com.ronasit.landing.ui.brands.BrandsLandingFragment"
+        android:label="BrandsLandingFragment" />
+    <fragment
+        android:id="@+id/landingSplashFragment"
+        android:name="com.ronasit.landing.ui.splash.LandingSplashFragment"
+        android:label="LandingSplashFragment" >
+        <action
+            android:id="@+id/action_landingSplashFragment_to_landingFragment"
+            app:destination="@id/landingFragment" />
+        <action
+            android:id="@+id/action_landingSplashFragment_to_brandsLandingFragment"
+            app:destination="@id/brandsLandingFragment" />
+    </fragment>
 </navigation>

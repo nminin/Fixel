@@ -1,4 +1,4 @@
-package com.ronasit.landing.ui
+package com.ronasit.landing.ui.landing
 
 import com.ronasit.core.base.ViewModel
 import com.ronasit.core.extension.safeSubscribe

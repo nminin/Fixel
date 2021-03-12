@@ -1,17 +1,15 @@
-package com.ronasit.landing.ui
+package com.ronasit.landing.ui.landing
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nminin.bindingbuilder.bind
 import com.nminin.bindingbuilder.default.ButtonTextDecorator
-import com.nminin.bindingbuilder.default.TextDecorator
 import com.nminin.bindingbuilder.default.VisibilityDecorator
 import com.ronasit.core.base.binding.GlideImageDecorator
 import com.ronasit.core.extension.bindView

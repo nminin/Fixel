@@ -1,6 +1,7 @@
 package com.ronasit.fixel.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -31,6 +32,13 @@ class AppCoordinator: Coordinator {
         bottomNavigationView.selectedItemId = R.id.browseHostFragment
     }
 
+    override fun toLanding() {
+        getCurrentNavController()?.navigate(R.id.action_landingSplashFragment_to_landingFragment)
+    }
+
+    override fun toBrands() {
+        getCurrentNavController()?.navigate(R.id.action_landingSplashFragment_to_brandsLandingFragment)
+    }
 
     override fun toSignUp() {
         bottomNavigationView.selectedItemId = R.id.accountHostFragment

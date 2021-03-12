@@ -13,6 +13,11 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "0.0.1"
+        applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName = "Fixel-${variant.versionName}.apk"
+            }
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -1,4 +1,4 @@
-package com.ronasit.landing.ui
+package com.ronasit.landing.ui.landing
 
 import android.os.Bundle
 import android.view.View

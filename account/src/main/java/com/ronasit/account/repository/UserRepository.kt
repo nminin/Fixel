@@ -1,5 +1,6 @@
 package com.ronasit.account.repository
 
+import com.jakewharton.rxrelay3.BehaviorRelay
 import com.ronasit.account.model.UpdateAccountInfo
 import com.ronasit.account.networking.AccountApi
 import com.ronasit.core.extension.accepTo
@@ -18,12 +19,15 @@ internal class UserRepository(
 ) :
     UserRepository {
 
-    private var data = behaviorRelay(Optional<User>(null))
+    private var data = BehaviorRelay.create<Optional<User>>()
 
     override fun refresh(): Single<Unit> = api.getAccount()
         .singleResponse()
         .doOnSuccess {
             data.accept(Optional(it))
+        }
+        .doOnError {
+            data.accept(Optional(null))
         }
         .unit()
 

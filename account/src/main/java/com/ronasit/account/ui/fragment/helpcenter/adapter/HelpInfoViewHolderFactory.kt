@@ -13,9 +13,7 @@ class HelpInfoViewHolderFactory(
 ) :
     StyledViewHolderFactory<HelpInfo, StyledViewHolder<HelpInfo>>(style) {
 
-    override fun getViewType(item: HelpInfo): Int = item.getType().also {
-        Log.d("asdasdasd", it.name)
-    }.id
+    override fun getViewType(item: HelpInfo): Int = item.getType().id
 
     override fun getViewHolder(viewType: Int, viewGroup: ViewGroup): StyledViewHolder<HelpInfo> =
         when (viewType) {
